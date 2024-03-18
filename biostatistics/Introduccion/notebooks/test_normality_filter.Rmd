@@ -1,0 +1,48 @@
+---
+---
+---
+
+# Probar Normalidad/Gaussianidad
+
+```{r}
+library("dplyr")
+```
+
+
+```{r}
+datos <- read.csv("/store/science/data/cursos/bioestadistica/src/introduccion/db_sim_g_ng_c.csv")
+datos
+
+```
+
+### Resumen de datos 
+
+```{r}
+head(datos)
+
+```
+
+```{r}
+summary(datos)
+```
+
+### Filtrar
+
+```{r}
+sexo_f <- datos %>% filter(sexo == "F")
+sexo_m <- datos %>% filter(sexo == "M")
+```
+
+### Prueba de normalidad por categoria
+```{r}
+shapiro.test(sexo_f$oxo)
+shapiro.test(sexo_m$oxo)
+```
+
+**Función select de dplyr con sintáxis pipeline**
+
+```{r}
+datos %>% sapply(., shapiro.test)
+```
+
+

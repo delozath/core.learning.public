@@ -1,0 +1,111 @@
+---
+---
+---
+
+## Procesar archivos
+
+### Leer archivos
+
+```{r}
+datos <- read.csv("db_sim_intro.csv")
+datos
+
+```
+
+### Resumen de datos 
+
+```{r}
+summary(datos)
+
+```
+
+### Acceder a valores de columnas
+
+```{r}
+unique(datos$var6)
+sort(unique(datos$var6))
+mean(datos$var6)
+sd(datos$var6)
+```
+
+### Histrograma, solo datos numéricos
+
+```{r}
+hist(datos$var6)
+
+```
+
+### Cuenta de datos no numéricos
+
+```{r}
+table(datos$var5)
+
+```
+
+```{r}
+barplot(table(datos$var5))
+
+```
+
+## Manejo básico de datos
+
+### Filter
+
+```{r}
+library("dplyr")
+dplyr::filter(datos, var5 == "F")
+
+```
+
+### Selecionar varias columnas
+
+**Enfoque clásico** Selección con lista de nombres de variables
+
+```{r}
+datos[c("var1", "var2")]
+
+```
+
+**Función select de dplyr**
+
+```{r}
+select(datos, var1, var2)
+
+```
+
+**Función select de dplyr con sintáxis pipeline**
+
+```{r}
+datos %>% select(var1, var2)
+datos
+```
+
+**Función select_if: seleccionar tipos de datos**
+
+```{r}
+datos_num <- select_if(datos, is.numeric)
+datos_num
+```
+
+**Función select_if: seleccionar tipos de datos pipeline**
+
+```{r}
+datos_num <- datos %>% select_if(is.numeric)
+datos_num
+```
+
+**Funciones compuestas con sintáxis pipeline**
+
+```{r}
+means <- datos %>% 
+           filter(var5 == "F") %>%
+           select_if(is.numeric) %>%
+           sapply(., mean)
+
+stds <- datos %>%
+          filter(var5 == "F") %>%
+          select_if(is.numeric) %>%
+          sapply(., sd)
+means
+stds
+```

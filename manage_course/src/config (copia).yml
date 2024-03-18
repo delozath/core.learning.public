@@ -1,0 +1,77 @@
+---
+curso_info:
+  uea: Secuenciadores y Microprocesadores
+  trimestre: 23-P
+  aula_virtual: pass
+...
+
+---
+calendario:
+  uam_offset: 31
+  inicio: 2023.08.07
+  fin: 2023.10.25
+  sesiones:
+    teoría:
+      - lunes
+      - martes
+      - viernes
+    laboratorio:
+      - miércoles
+  lugar:
+    teoría: C121
+    laboratorio: AT1XX
+  eventos:
+    feriado:
+      - 2023.09.15
+      - 2023.09.16
+      - 2023.10.12
+    examen:
+      - 2023.09.05
+      - 2023.10.09
+      - 2023.10.20
+...
+
+---
+query:
+  exclude:
+    temario:
+      - asimilado en propuesta
+      - obsoleto
+      - mov ip
+...
+
+---
+profe_info:
+  nombre: Omar Piña Ramírez
+  email: opina.ramirez@izt.uam.mx
+...
+
+---
+dbs:
+  main: 
+    path: '/home/omarpr/Dropbox/Brain/Cursos/SyMP/dbs/planeacion.ods'
+    tables:
+      planeacion: temario
+  traducción:
+    días:
+      Monday: lunes
+      Tuesday: martes
+      Wednesday: miércoles
+      Thursday: jueves
+      Friday: viernes
+      Saturday: sábado
+      Sunday: domigo
+    meses:
+      January: enero
+      February: febrero
+      March: marzo
+      April: abril
+      May: mayo
+      June: junio
+      July: julio
+      August: agosto
+      September: septiembre
+      October: octubre
+      November: noviembre
+      December: diciembre
+...

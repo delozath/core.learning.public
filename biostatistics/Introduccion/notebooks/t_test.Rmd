@@ -1,0 +1,43 @@
+# T-Test
+
+```{r}
+library("dplyr")
+```
+
+
+```{r}
+datos <- read.csv("/store/science/data/cursos/bioestadistica/src/introduccion/db2_sim_g_ng_c.csv")
+datos
+
+```
+
+```{r}
+shapiro.test(datos$oxo)
+```
+
+
+### Filtrar
+
+```{r}
+sexo_f <- datos %>% filter(sexo == "F")
+sexo_m <- datos %>% filter(sexo == "M")
+```
+
+### Prueba de normalidad por categoria
+```{r}
+shapiro.test(sexo_f$oxo)
+shapiro.test(sexo_m$oxo)
+```
+
+### Prueba T
+```{r}
+t.test(sexo_f$oxo, sexo_m$oxo, paired = FALSE, altertative = "equal")
+```
+
+
+```{r}
+datos$sexo <- factor(datos$sexo)
+t.test(il_6 ~ sexo, data = datos, paired = FALSE, altertative = "equal")
+```
+
+

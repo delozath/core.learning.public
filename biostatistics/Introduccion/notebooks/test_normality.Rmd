@@ -1,0 +1,51 @@
+---
+---
+---
+
+# Probar Normalidad/Gaussianidad
+
+```{r}
+library("dplyr")
+```
+
+
+```{r}
+datos <- read.csv("/store/science/data/cursos/bioestadistica/src/introduccion/db2_sim_g_ng_nc.csv")
+datos
+
+```
+
+### Resumen de datos 
+
+```{r}
+head(datos)
+
+```
+
+### Acceder a valores de columnas
+
+```{r}
+summary(datos)
+```
+
+### Histrograma, solo datos numéricos
+
+```{r}
+hist(datos$dormir, breaks = 20)
+
+```
+
+### Cuenta de datos no numéricos
+
+```{r}
+shapiro.test(datos$dormir)
+
+```
+
+**Función select de dplyr con sintáxis pipeline**
+
+```{r}
+datos %>% sapply(., shapiro.test)
+```
+
+

@@ -1,0 +1,63 @@
+```{r}
+datos <- read.csv("PI.csv")
+
+# plantear el modelo
+modelo <- lm(perimetro ~ diametro, data = datos)
+
+# Desplegar los resultados del modelo
+summary(modelo)
+```
+
+
+```{r}
+# plantear el modelo
+modelo <- lm(perimetro ~ diametro + 0, data = datos)
+
+# Desplegar los resultados del modelo
+summary(modelo)
+```
+
+```{r}
+datos <- read.csv("salario.csv")
+
+# plantear el modelo
+modelo <- lm(Salario ~ Edad + Educación + Experiencia + Productividad, 
+             data = datos)
+
+# Desplegar los resultados del modelo
+summary(modelo)
+
+```
+
+```{r}
+datos <- read.csv("salud_1.csv")
+
+# plantear el modelo
+modelo <- lm(Salud ~ Edad + Altura + Peso + Cintura + Cadera + Presión.Sistólica + Presión.Diastólica, data = datos)
+
+# Desplegar los resultados del modelo
+summary(modelo)
+
+```
+
+```{r}
+datos <- read.csv("salud_2.csv")
+
+# plantear el modelo
+modelo <- lm(Salud ~ Edad + Altura + Peso + Cintura + Cadera + Presión.Sistólica + Presión.Diastólica, data = datos)
+
+# Desplegar los resultados del modelo
+summary(modelo)
+
+```
+
+```{r}
+datos <- read.csv("salud_3.csv")
+
+# plantear el modelo
+modelo <- lm(Salud ~ Edad + Altura + Peso + Cintura + Cadera + Presión.Sistólica + Presión.Diastólica + Sexo, data = datos)
+
+# Desplegar los resultados del modelo
+summary(modelo)
+
+```
