@@ -1,0 +1,173 @@
+% Plantilla latex para tesis UAM de maestria y doctorado,
+% aunque tabién sirve para reporte de licenciatura CBI.
+% Laboratorio de Investigación en Neuroimagenología
+% Universidad Autonóma Metropolitana Unidad Iztapalapa
+%
+% @autor Omar Piña-Ramirez
+% @email delozath@gmail.com
+% @year 2023
+% @vesion 1.2
+% @license CC-BY-NC
+%
+% agradecere sus comentarios, contribuciones, 
+% reporte de bugs, su reconocimiento en los agradecimientos
+% de su tesis y la difusión de esta plantilla
+
+
+%Encoding
+%================
+\usepackage[spanish]{babel}  
+%\usepackage[latin1]{inputenc} %% descomentar para Miktex
+\usepackage[utf8]{inputenc}    %% comentar para Miktex
+
+%Fonts
+%================
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[sc]{mathpazo}
+
+%Math fonts
+%================
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+
+%Paraphaphs
+\parindent 0em
+\usepackage{setspace}
+\onehalfspacing
+\widowpenalty=650
+\clubpenalty=200
+\brokenpenalty=300
+%\usepackage[all]{nowidow}
+
+
+%Figures and color styles
+%================
+\usepackage[pdftex]{graphicx}
+\usepackage[pdfborder={0 0 0}]{hyperref}
+\usepackage[small,bf]{caption}
+\usepackage{subcaption}
+\usepackage{color}
+\usepackage[usenames,dvipsnames,table]{xcolor}
+
+
+%Enumerations
+%================
+\usepackage{enumitem}
+
+
+%Text
+%================
+\usepackage{parskip}
+\setlength{\parskip}{1em plus 0.2em minus 0.1em}
+\setlength{\skip\footins}{2em} % distancia entre footnotes y texto
+%\hoffset = -0.54cm
+\voffset        = -2cm
+\headheight     = 2em
+\topmargin      = 4em
+%\oddsidemargin  = 0.5cm 
+%\evensidemargin = -.5mm
+\textwidth      = 15.5cm
+\textheight     = 21cm
+\setlength{\evensidemargin}{1cm}
+
+
+%Page
+%================
+\usepackage{fancyhdr}
+ \pagestyle{fancy}
+    \fancyhf{}
+    %\fancyhead[LE,RO]{\textsc{\leftmark}}
+    %\fancyhead[RE,LO]{\thepage}
+    \fancyhead[LE,RO]{\thepage}
+    \fancyhead[RE,LO]{\textsc{\leftmark}}
+    \fancyfoot[LE, RO]{}
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{0pt}
+
+%Landscapes
+\usepackage{rotating}
+
+
+%Behaviours
+%================
+%TODO: %\usepackage{abstract}
+\usepackage{multirow}
+
+
+%Fonts
+%================
+\renewcommand{\familydefault}{\rmdefault}
+
+
+%Biblatex setup
+%================
+\usepackage[autostyle]{csquotes}%
+\usepackage[backend=biber, citestyle=numeric-comp,doi=true,maxcitenames=1]{biblatex}
+\DefineBibliographyStrings{spanish}
+   {andothers = {et al.,}}
+\addbibresource{references.bib}
+%\bibliography{phd}%exclusivo de bibtex
+%\usepackage{cite} %exclusivo de bibtex
+
+
+%Number format
+%================
+\decimalpoint
+
+
+%Chapter format
+%================
+\usepackage{anyfontsize}
+\usepackage{titlesec}
+
+\titleformat{\chapter}[display]
+    { \bf \Huge \scshape \color{MidnightBlue}  }
+    { \flushright \fontsize{40}{10} \color{MidnightBlue} 
+         \bf \chaptertitlename \hspace{0.1 em} 
+         { \fontsize{40}{30} \color{MidnightBlue} \bf \thechapter }
+     } {0.2em}{\bf\Huge} 
+
+\titleformat{\section}
+  {\normalfont\Large\bfseries}  
+  {}                             
+  {0pt}                          
+  {\thesection. }  
+
+
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}  
+  {}                             
+  {0pt}                          
+  {\thesubsection. }  
+
+
+\titleformat{\subsubsection}[runin]
+  %{\normalfont\scshape }
+  {\normalfont\itshape }  
+  {}                             
+  {0pt}                          
+  {}
+  
+\titlespacing*{\subsubsection}
+{0pt}{0.1em plus 0.1em minus .1em}{.6em}%{0.1em plus .5em}
+
+\titlespacing*{\subsection}  
+{0pt}{0.2em plus 0.1em minus .1em}{0.5em plus .2em}
+
+%New commands
+%================
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+
+%Definitions
+%===========
+\newcommand{\fig}{Fig.~}
+\newcommand{\figs}{Figs.~}
+\newcommand{\ej}{por ejemplo }
+\newcommand{\ejs}{v. g.: }
+\newcommand{\blankpage}{\pagebreak\newpage\thispagestyle{empty}\mbox{}\pagebreak}
+\newcommand{\centercoltitle}[1]{\multicolumn{1}{c}{\bf #1}}
+
