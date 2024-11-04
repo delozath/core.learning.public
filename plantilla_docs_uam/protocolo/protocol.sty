@@ -1,0 +1,174 @@
+% Plantilla latex  UAM de maestria y doctorado,
+% aunque tabién sirve para reporte de licenciatura CBI.
+% Laboratorio de Investigación en Neuroimagenología
+% Universidad Autonóma Metropolitana Unidad Iztapalapa
+%
+% @autor Omar Piña-Ramirez
+% @email delozath@gmail.com
+% @year 2023
+% @vesion 1.2
+% @license CC-BY-NC
+%
+% agradecere sus comentarios, contribuciones, 
+% reporte de bugs, su reconocimiento en los agradecimientos
+% de su tesis y la difusión de esta plantilla
+
+% Configuración básica y codificación
+%=====================================
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[head=1.5cm, foot=1.5cm, top=3cm, bottom=3cm, left=3cm, right=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\lhead{}
+\rhead{}
+\fancyfoot[L]{}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{}
+
+\setlength{\headheight}{2cm}
+\setlength{\footskip}{1.5cm}
+
+
+% Listas y configuración de listas
+%=====================================
+\usepackage{balance}
+\usepackage{enumitem}
+\setlist{itemsep=-1em}
+\setlistdepth{10}
+\setlist[enumerate,1]{label=\arabic*., ref=\arabic*}
+\setlist[enumerate,2]{label=\theenumi.\arabic*., ref=\theenumi.\arabic*}
+\setlist[enumerate,3]{label=\theenumii.\arabic*., ref=\theenumii.\arabic*}
+\setlist[description]{labelindent=15pt}
+
+% Figuras, gráficos y colores
+%=====================================
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{longtable}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{float}
+\graphicspath{{./images/}}
+%\usepackage{tcolorbox}
+%\definecolor{MainColor}{HTML}{73BF38}
+
+% Referencias, hipervínculos y configuración de enlaces
+%=====================================
+\usepackage{url}
+\usepackage{hyperref}
+\definecolor{citecolor}{HTML}{57A519}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=citecolor,
+    citecolor=citecolor,
+    urlcolor=citecolor,
+    pdfborder={0 0 0}
+}
+
+% Entornos matemáticos y símbolos
+%=====================================
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{listings}
+%NOTE: Este listing de LaTeX puede eliminarse si no se requiere el código en dicho lenguaje
+\renewcommand{\lstlistingname}{Snippet}
+\lstset {
+    language=Tex,
+    backgroundcolor=\color{gray!10},
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{green!50!black},
+    stringstyle=\color{orange},
+    numberstyle=\tiny\color{gray},
+    rulecolor=\color{gray!30},
+    frame=single,
+    tabsize=2,
+    numbers=left,
+    numbersep=5pt,
+    showstringspaces=false,
+    breaklines=true,
+    extendedchars=true,
+    inputencoding=utf8,
+    sensitive=true,
+    morekeywords={includegraphics, documentclass, usepackage, begin, end,  textbf, textit, section, subsection, equation, text, left, sum, alpha, gamma, right, exp, label, bmatrix, caption, hline, figure, document, textwidth},
+    %moredelim=[l][\color{blue}\bfseries]{\\}
+}
+\decimalpoint
+
+% Párrafos y espaciado entre párrafos
+%=====================================
+\setlength{\columnseprule}{0pt}
+\usepackage{xspace}
+\usepackage{parskip}
+\setlength{\parindent}{0pt} % Sin sangría en párrafos
+\setlength{\parskip}{1em plus 0.2em minus 0.1em} % Espaciado entre párrafos
+
+% Fuentes y tipografía
+%=====================================
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{lmodern} % Fuente por defecto
+\usepackage[sc]{mathpazo} % Fuente para matemáticas
+
+% Configuración de secciones, subsecciones y títulos
+%=====================================
+\usepackage{titlesec}
+\renewcommand\thesection{\arabic{section}}
+\titleformat*{\section}{\large\bfseries}
+\titleformat*{\subsection}{\bfseries}
+\titleformat*{\subsubsection}{\itshape}
+\titleformat*{\paragraph}{\itshape}
+\titleformat*{\subparagraph}{\itshape}
+\titlespacing*{\section}{0pt}{0.5\baselineskip}{0.05\baselineskip}
+\titlespacing*{\subsection}{0pt}{0.5\baselineskip}{-0.5\baselineskip}
+
+% Espaciado entre líneas y párrafos
+%=====================================
+\usepackage{setspace}
+\onehalfspacing
+\widowpenalty=650
+\clubpenalty=200
+\brokenpenalty=300
+
+% Inclusión de PDF y tablas
+%=====================================
+\usepackage{pdfpages}
+\usepackage{booktabs}
+
+% Algoritmos
+%=====================================
+\usepackage{algorithmic}
+\usepackage{xparse}
+
+% Citas y bibliografía con BibLaTeX
+%=====================================
+\usepackage[autostyle]{csquotes}%
+\usepackage[
+   backend=biber,
+   style=apa,
+   citestyle=authoryear,
+   maxcitenames=1,
+   sorting=nyt
+]{biblatex}
+\addbibresource{references.bib}
+\DeclareCiteCommand{\parencite}
+ {\textcolor{citecolor}{(\usebibmacro{prenote}}}
+ {\textcolor{citecolor}{\printnames{labelname} \printfield{year}}}
+ {\textcolor{citecolor}{\multicitedelim}}
+ {\textcolor{citecolor}{)\usebibmacro{postnote}}}
+
+
+% Definiciones de símbolos y otros comandos de texto
+%=====================================
+\newcommand{\laplace}{$\mathcal{L}$\xspace}
+\newcommand{\fourier}{$\mathcal{F}$\xspace}
+\newcommand{\fig}{Fig.~}
+\newcommand{\cdr}{Cuadro~}
+\newcommand{\ej}{\textbf{Ejemplo:~}}
+\newcommand{\wt}[1]{#1\textwidth}
+\newcommand{\cellcenter}[1]{\multicolumn{1}{c}{#1}}
+

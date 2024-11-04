@@ -1,0 +1,76 @@
+%\newcommand{\documenttype}{Idónea Comunicación de Resultados:\\Para obtener el título de\\ Maestrao en Ciencias \\(Ingeniería Biomédica)}
+\newcommand{\documenttype}{Tesis: Para obtener el título de\\ Doctor en Ciencias \\(Ingeniería Biomédica)}
+
+\NewDocumentCommand{\peopleappend}{o m}{%
+    \IfNoValueTF{#1}
+        {\hspace{8pt}#2\\}
+        {\textit{#1}:\\\hspace{8pt}#2\\}
+}
+
+\pagenumbering{roman}
+
+\begin{titlepage}
+
+%Header
+%================
+\begin{minipage}{\textwidth}
+  \vspace{-3cm}
+  \hspace{-2em}
+     \includegraphics[width=0.4\textwidth ]{uam-izt-v6}
+  \hspace{19em}
+     \includegraphics[width=0.12\textwidth]{lini-v1}
+\end{minipage}
+
+\begin{center}
+ \vspace{0.1cm}
+\begin{minipage}{0.9\textwidth}
+  \centering
+  \textsc{\documenttype}
+  \vspace{1em}
+\end{minipage}
+
+%Title
+%================
+   \begin{minipage}{.8\textwidth}
+      % Title
+      \centering
+		\centering{\textbf{\large   Plantilla latex para: protocolo de investigación    }}\\
+   \end{minipage}
+		
+% Author and supervisor
+%================
+\vspace{1em}
+\begin{minipage}[t]{\wt{1}}
+ \begin{minipage}[t]{\wt{0.45}}
+  \begin{tabular}{l}
+   \peopleappend[Candidato]{M. en C. Omar Piña Ramírez}\\[5.5em]
+  \end{tabular}
+ \end{minipage}\hfill
+%
+ \begin{minipage}[t]{\wt{0.45}}
+  \begin{tabular}{l}
+    \peopleappend[Asesores:]{Dr. Omar Piña Ramírez}
+    \peopleappend{Dr. Aurelius Von Tessel}\\
+    %
+    \peopleappend[Revisores:]{Dra. Phillipa Katja Zweig}
+    \peopleappend{Dr. Euler Edmund Pineapple}
+  \end{tabular}
+ \end{minipage}
+\end{minipage}
+
+
+
+%Date
+%================
+	\vfill
+	\begin{flushright}
+		\normalsize\today
+	\end{flushright}
+
+\end{center}
+
+\end{titlepage}
+
+\pagebreak
+\tableofcontents
+\newpage

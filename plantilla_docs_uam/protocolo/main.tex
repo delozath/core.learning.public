@@ -1,0 +1,694 @@
+% Plantilla latex para protocolo de investivación o proyecto terminal
+% desarrollado originalmente para licenciatura, maestria y doctorado
+% en Ingeniería Biomédica
+%
+% Laboratorio de Investigación en Neuroimagenología
+% Universidad Autonóma Metropolitana Unidad Iztapalapa
+%
+% @autor Omar Piña-Ramirez
+% @email opina.ramirez@izt.uam.mx | delozath@gmail.com
+% @year 2024
+% @vesion 1.78
+% @license CC-BY-NC
+%
+% agradecere sus comentarios, contribuciones, 
+% reporte de bugs, su reconocimiento en los agradecimientos
+% de su tesis y la difusión de esta plantilla
+%
+% @note Modificar archivo protocolo.sty para personalizar plantilla
+% @note Biblatex: Opciones --> Configuración TexMaker --> ordenes [biber %] 
+% @note Bibtex  : Opciones --> Configuración TexMaker --> ordenes [bibtex %.aux] 
+
+\documentclass[12pt,letterpaper,spanish, twoside]{article}
+\usepackage{protocol}
+
+
+%review mode
+%================
+\usepackage{todonotes}
+\usepackage{lineno}
+\linenumbers
+
+
+%set image paths
+%==========
+\graphicspath{{./images/}}
+
+\title{}
+\author{Omar Piña Ramírez}
+
+\begin{document}
+
+%Personalizar este archivo
+\input{cover} 
+
+\pagenumbering{arabic}
+
+\section*{Sobre esta plantilla}
+Esta plantilla \LaTeX{} para protocolo de investigación o proyecto terminar está basado en el \textit{Formato de Protocolo de Investigación en Salud}\footnote{Se puede descargar del sitio \url{http://www.calidad.salud.gob.mx/site/educacion/servicio_social_investigacion.html}}. Dicho formato es el requerido para el programa de Servicio Social en Investigación de la Comisión Interinstitucional para la Formación de Recursos Humanos para la Salud (CIFRHS).
+
+La plantilla se divide en dos partes: 1) Partes del protocolo, en la que se explica brevemente en qué consiste cada una de ellas; 2) Referencia rápida de \LaTeX. Esta plantilla aún está en desarrollo, pero ya es bastante funcional. Se apreciará cualquier comentario o fork de ella.
+
+\textbf{Disclaimer:} Esta primera revisión de la descripción de los elementos del protocolo fue realizada con base a la experiencia; por lo que en próximas revisiones se incluirán referencias, citas y definiciones más formales sobre el tema de desarrollo de protocolos de investigación en general.
+
+\section{Fundamentación del Protocolo}
+\subsection{Síntesis de Proyecto}
+Aquí se debe proporcionar una descripción general del proyecto de investigación en términos generales. Esto incluye el tema central, los enfoques clave y el propósito de la investigación. Esto generalmente se escribe una vez que ya se ha redactado completamente el protocolo para que ya se tenga una panorámica general.
+
+\ej Este proyecto investiga la aplicación de redes neuronales convolucionales para mejorar la precisión en el diagnóstico de enfermedades cardiovasculares, con un enfoque en su implementación en dispositivos portátiles de monitoreo.
+
+\subsection{Antecedentes}
+Los antecedentes de una investigación ofrecen una visión histórica y contextual del problema a estudiar. Esta sección responde a la pregunta: ¿Qué se ha hecho antes en el contexto de la investigación y cómo ha ido evolucionando? Su propósito es situar al lector en el tema y las problemáticas particulares que aún no se han resuelto.
+
+En los antecedentes se puede incluir:
+\begin{description}
+    \item[Contexto histórico:] Describir brevemente la evolución del tema de estudio, mencionando descubrimientos, eventos o desarrollos clave.
+    \item[Investigaciones previas:] Resume los estudios más relevantes y recientes relacionados con el tema de investigación; destacando resultados, metodologías y enfoques ya utilizados. Esto situará al lector para que identifique qué se pretende realizar en esta investigación, ya sea aportar nuevo conocimiento, nuevas implementaciones o replicar resultados, por ejemplo.
+    \item[Áreas de oportunidad:] Con el contexto ya establecido se podrán identificar los elementos aún no explorados o preguntas abiertas, que se abordarán en esta investigación.
+\end{description}
+
+
+\subsection{Marco Teórico}
+En el marco teórico se define y explican los conceptos, teorías y modelos fundamentales en los que se basa la investigación. Aquí, el objetivo es construir una base conceptual sólida que guíe el estudio y explique cómo se contextualiza la investigación en un marco más amplio de conocimiento.
+
+El marco teórico puede incluir:
+\begin{description}
+    \item[Definiciones de conceptos clave:] Describe los términos técnicos, ideas y definiciones específicas que son relevantes para la investigación. Esto asegura que el lector esté contextualizado en el tema.
+    \item[Teorías y modelos:] Presenta las teorías, modelos o enfoques teóricos que fundamenten o sean relevantes para un completo entendimiento del estudio. En este contexto es importante señalar que se debe estar consciente de quienes serán los lectores, ya que el protocolo al ser un documento que leerán personas que conozcan del tema, se asumirá que su nivel mínimo de conocimientos no requerirá de definiciones demasiado básicas. Decidir que poner y qué no en el marco teórico es una de las tareas más complicadas en el desarrollo de un protocolo de investigación. Una regla empírica es escribir en el marco teórico los conceptos que un par debería saber para replicar paso a paso el estudio.
+    \item[Variables y sus relaciones:] Identifica las variables principales que forman parte del estudio y los conceptos o relaciones más relevantes que se han descrito de dichas variables.
+\end{description}
+
+\subsection*{Citas y referencias}
+Esta sección no es propiamente parte de la plantilla de protocolo, pero es útil para esta sección ya que describe brevemente como utilizar el sistema de referencias \textit{biblatex}; la referencia completa se puede consultar en \S\ref{ssec:biblatex}.
+
+Las referencias se almacenan en un archivo de texto de extensión \textit{.bib}, cuyas referencias se especifican de acuerdo al motor \textit{biblatex} que es quien procesará las referencias para incluirlas en el documento final; cada tipo de referencia tiene sus etiquetas y especificaciones.
+
+\ej En el siguiente párrafo se ejemplifican los diferentes formatos de citas:
+
+El aprendizaje automático (Machine Learning, ML) se define como el estudio de algoritmos que permiten a las computadoras aprender de los datos. Según \textcite{Bishop2006}, el ML es fundamental en el análisis de patrones y la toma de decisiones a partir de grandes cantidades de datos \parencite{Bishop2006}. En el ámbito de la ingeniería biomédica, el ML se emplea en aplicaciones como el análisis de imágenes médicas, la predicción de enfermedades y el descubrimiento de biomarcadores~\parencite{Park2018, Shaikhina2015, Krishnan2021}. Existen distintos comandos para citas: \textit{cite}, \textit{textcite} y \textit{parencite}.
+
+\subsection{Justificación}
+La justificación explica la importancia y relevancia de este estudio en el contexto yendo desde lo general a lo particular. Aquí se debe exponer cómo el proyecto podría contribuir al avance de nuevas metodologías, algoritmos, etc., que tengan como objetivo facilitar diagnósticos tempranos, o mejorar la calidad de vida de los pacientes.
+
+\ej Debido a la alta tasa de mortalidad asociada con enfermedades cardiovasculares, se planteó el desarrollo de este proyecto que al ser concluido se contarán con herramientas de diagnóstico automatizado. Este proyecto contribuirá a la creación de dispositivos portátiles basados en IA, que podrían usarse en áreas de difícil acceso a servicios de salud.
+
+\subsection{Planteamiento del Problema}
+En esta sección, el estudiante debe definir de forma clara y precisa el problema de investigación. En este contexto, podría ser una limitación actual en el uso de IA en diagnósticos biomédicos o la falta de precisión en métodos existentes.
+
+\ej El problema principal es la baja precisión de los sistemas actuales de monitoreo cardíaco portátil para el diagnóstico temprano de arritmias, lo cual se debe en parte a la falta de exploración y validación exhaustiva de métodos de IA adecuados para dicha aplicación.
+
+\subsection{Objetivos}
+El objetivo general del proyecto o investigación define el propósito principal del estudio y se descompone en los objetivos específicos.
+
+Para facilitar el proceso de conceptualización del proyecto se sugiere que primero se formule un \textbf{Objetivo General}, que describirá el foco de la investigación; deberá describirse iniciando con uno o dos verbos en infinitivo en una secuencia: 1)~Verbo o verbos que describan lo que se realizará. 2)~Sujeto foco de la investigación, este puede ser un algoritmo, un método de clasificación o más general una metodología. 3)~Condiciones de desarrollo, esto aplica para el tipo de población o características particulares en las que se implementará el proyecto. 4)~Especificaciones adicionales como restricciones temporales, algoritmos específicos, etc.
+
+Posteriormente, a partir del Objetivo General se desglosan los \textbf{Objetivos Específicos} que representan las acciones concretas y delimitadas necesarias para alcanzar el objetivo general. Lo anterior se basa en el principio de \textbf{divide y vencerás}, que implica dividir un objetivo amplio en metas más pequeñas y manejables, lo cual permite organizar y enfocar el proceso de investigación. En este caso, se recomienda definir un máximo de tres objetivos específicos.
+
+\ej 
+
+\textbf{Objetivo General} Desarrollar un modelo de inteligencia artificial para el diagnóstico temprano de arritmias cardíacas basado en redes neuronales convolucionales implementadas en dispositivos portátiles para un sector de la población entre 40 y 60 años.
+
+\textbf{Objetivos Específicos\footnote{Un método para aplicar el principio divide y vencerás en proyectos es el Work Breakdown Structure (WBS).}}
+\begin{enumerate}
+ \item Recopilar y preprocesar un conjunto de datos de señales de ECG para entrenar y validar el modelo de IA, asegurando una muestra representativa de arritmias comunes.
+ \item Diseñar y entrenar una red neuronal convolucional optimizada para la clasificación de patrones de arritmia, evaluando su precisión en comparación con otros algoritmos de aprendizaje automático.
+ \item Integrar el modelo entrenado en un prototipo de dispositivo portátil y validar su precisión diagnóstica en condiciones de uso real en una muestra piloto.
+\end{enumerate}
+
+De esta manera, cada objetivo específico corresponde a un paso claro y alcanzable que, en conjunto, permite lograr el objetivo general. Este enfoque se asemeja a una estructura de desglose del trabajo (WBS), donde cada tarea se desglosa en unidades que conducen a completar el proyecto en su totalidad.
+ 
+\subsection{Hipótesis}
+La hipótesis es una proposición que la persona que investiga formula como una posible respuesta o explicación del problema de investigación. Puede dividirse en dos tipos principales:
+
+\textbf{Hipótesis Científica}: Es una suposición que establece una relación esperada entre dos o más variables, y que puede ser comprobada o refutada mediante el estudio. Este tipo de hipótesis está enfocado en investigaciones en las que se plantea un experimento; aunque también puede utilizarse en estudios observacionales. Estas hipótesis,generalmente, se basan teorías o estudios previos y se plantean con la idea de generalizar o particularizar los conocimientos ya establecidos.
+
+\ej La precisión de diagnóstico de arritmias en dispositivos portátiles que usan modelos de redes neuronales convolucionales será significativamente mayor (al menos un 20\%) en comparación con los modelos de aprendizaje automático basados en árboles de decisión tradicionales.
+
+Está hipótesis también se podría plantear en términos de diferencias estadísticas significativas; sin embargo en términos de clasificadores, dados los altos desempeños que actualmente se manejan, es menos frecuente que en otros ámbitos.
+
+\textbf{Hipótesis de Trabajo}: también llamada \textit{hipótesis operativa} es una afirmación que se enfoca en el contexto específico del proyecto. Esta hipótesis establece lo que la persona que investigada espera lograr dentro de los límites de su estudio, considerando las condiciones, métodos y muestra particular en el contexto de su experimento, en otra palabras este tipo de hipótesis es más operativa. Suele utilizarse para guiar el desarrollo y prueba de una solución o intervención específica en el marco del proyecto de investigación.
+
+\ej La implementación de una red neuronal convolucional optimizada en un microcontrolador ESP32 permitirá la detección de arritmias cardíacas en tiempo real con una precisión superior al 85\%, utilizando menos de 80\% de su capacidad de memoria y procesando cada muestra en menos de 500 ms.
+
+\section{Metodología}
+\subsection{Diseño del Estudio}
+En este apartado se deberá escribir la metodología de desarrollo del estudio. Deberá explicar detalladamente los pasos a seguir a un nivel de detalle que facilite la replicación del estudio por terceras personas; deberá evitar el uso de listas con \textit{items} para ir describiendo la secuencia de actividades; en lugar de esto, prefiera una escritura narrativa en párrafos.
+
+Un método para describir la metodología es usar WBS para ir dividiendo el objetivo general en objetivos específicos y cada objetivo específico en actividades, y cada actividad en tareas, para finalmente dividir las tareas en subtareas.
+
+Reescribiendo el objetivo específico 1 de este documento de ejemplo:
+\begin{quote}
+Recopilar y preprocesar un conjunto de datos de señales de ECG para entrenar y validar el modelo de IA, asegurando una muestra representativa de arritmias comunes.
+\end{quote}
+
+Una propuesta inicial de su correspondiente WBS considerando los siguientes niveles jerárquicos: Actividades $\rightarrow$ Tareas $\rightarrow$ Subtareas; representados en los diferentes niveles de anidación de las siguientes listas:
+\begin{enumerate}
+ \item Recopilar señales ECG
+  \begin{enumerate}
+   \item Buscar en servidores de libre acceso
+    \begin{enumerate}
+     \item Buscar y descargar ECG del repositorio \url{https://physionet.org/}
+     \item Buscar y descargar ECG del repositorio \url{https://archive.ics.uci.edu/dataset/5/arrhythmia}
+    \end{enumerate}
+   \item Buscar en bases de datos locales
+   \item Adquirir señales ECG de pacientes con arritmias específicas
+  \end{enumerate}
+ \item Seleccionar señales para asegurar una muestra representativa de arritmias
+  \begin{enumerate}
+   \item Seleccionar manualmente las señales sin arritmia que se analizarán. Esto estará en función de la calidad de la señal.
+   \item Seleccionar manualmente las señales con arritmia que se utilizarán. Esta selección estará fundamentada en la calidad de la señal y el tipo de arritmia específico que se analizará.
+  \end{enumerate}
+ \item Proprocesar las señales ECG seleccionadas
+  \begin{enumerate}
+   \item Realizar una caracterización inicial de las señales ECG en términos del tipo de artefactos que presentan
+   \item Proponer un esquema de acondicionamiento de las señales
+    \begin{enumerate}
+     \item Diseñar filtros Chebyshev con diferentes órdenes para la banda 0.1-40~Hz (recordar que esta banda dependerá de la caracterización inicial de las señales)
+     \item Filtrar las señales utilizando el esquema de fase cero
+     \item Evaluar los diferentes filtros
+    \end{enumerate}
+   \item Evaluar la calidad de las señales acondicionadas
+  \end{enumerate}
+\end{enumerate}
+
+El esquema presentado corresponde a un boceto preliminar del WBS para el objetivo específico 1 de este ejemplo de protocolo, y fue diseñado con fines ilustrativos para ejemplificar el proceso \textit{divide y vencerás} del WBS.
+
+Con el WBS finalizado, será posible trasladar esta estructura a un formato narrativo, sin listas anidadas, permitiendo desarrollar párrafos descriptivos que detallen paso a paso la ejecución del estudio.
+
+
+\subsection{Tipo de Investigación}
+\begin{itemize}
+    \item[$\square$] Observacional
+    \item[$\blacksquare$] Cuasi-experimental
+    \item[$\square$] Experimental
+\end{itemize}
+
+\subsection{Tipos de Diseño}
+\begin{itemize}
+    \item[$\square$] Transversal
+    \item[$\blacksquare$] Casos y controles
+    \item[$\square$] Cohorte
+    \item[$\square$] Ensayo clínico controlado
+    \item[$\square$] Experimental biomédico
+\end{itemize}
+
+\subsection{Características del Estudio}
+\begin{enumerate}
+ \item Por la participación del investigador: Analítico | Descriptivo
+ \item Por temporalidad del estudio: Longitudinal | Transversal
+ \item Por la lectura de los datos: Prolectivo | Retrolectivo
+ \item Por el análisis de datos: Descriptivo | Analítico
+\end{enumerate}
+
+%\subsection{Universo, Unidades de Observación, Métodos de Muestreo y Tamaño de la Muestra}
+\subsection{Diseño Muestral}
+\textbf{Universo}\\
+Se describe la población total a la que se aplicaría el estudio si fuera posible incluir a todos sus integrantes, en otras palabras, son todos los sujetos o unidades que poseen las características relevantes para el estudio.
+
+\textbf{Unidades de Observación} \\
+Las unidades de observación son los \textbf{individuos o elementos específicos de la población} de los cuales se obtendrán datos concretos. Representan los casos o sujetos qué sí se podrá realizar las mediciones.
+
+\textbf{Métodos de Muestreo} \\
+Aquí se describe la técnica de muestreo utilizada para seleccionar la muestra del universo. En otras palabras es le método de selección de los participantes en el estudio.
+
+\begin{description}
+    \item[Muestreo Aleatorio Simple:] Cada individuo de la población tiene la misma probabilidad de ser seleccionado, y las unidades se eligen de manera totalmente aleatoria. 
+
+    \item[Muestreo Sistemático:] Se selecciona cada $n$-ésimo individuo de una lista ordenada de la población, después de elegir un punto de partida al azar.
+
+    \item[Muestreo Estratificado:] La población se divide en subgrupos o estratos homogéneos (como edad, género, etc.), y se realiza un muestreo aleatorio en cada estrato. 
+
+    \item[Muestreo por Conglomerados:] Se divide la población en grupos o conglomerados (como zonas geográficas), y se selecciona al azar algunos de estos grupos para estudiar a todos los individuos dentro de ellos. 
+
+    \item[Muestreo en Bola de Nieve:] Se comienza con un pequeño grupo de individuos, quienes luego refieren a otros participantes que cumplen con los criterios de inclusión. Es útil para poblaciones difíciles de alcanzar, como grupos marginados.
+
+    \item[Muestreo por Cuotas:] Se establecen cuotas para ciertos subgrupos de la población, y se seleccionan individuos hasta completar la cuota asignada a cada grupo.
+\end{description}
+
+\textbf{Tamaño de la Muestra} \\
+Esta sección especifica el número de unidades de observación que se incluirán en el estudio. El método para calcular el tamaño de la muestra dependerá del diseño del estudio y del tipo de variables que se medirán; a continuación se ejemplifican los casos más comunes:
+\begin{description}
+    \item[Fórmulas para Poblaciones Finita e Infinita:]  En función de parámetros como el nivel de confianza, el error muestral y la variabilidad esperada.
+
+    \item[Proporciones:] Usado cuando se espera que la variable de estudio sea dicotómica.
+
+    \item[Varianza Poblacional:] Este método se utiliza cuando la variable de interés es continua y se necesita un tamaño de muestra que permita calcular un promedio poblacional sin sesgo.
+
+    \item[Ensayos Clínicos:] Se utiliza en estudios clínicos para detectar un efecto con suficiente potencia estadística. El cálculo se basa en el nivel de significancia, la potencia estadística, y el tamaño del efecto esperado.
+
+    \item[Método de Fórmulas para Diferencias entre Medias:] Empleado cuando se desea comparar dos grupos. Calcula el tamaño de muestra necesario para detectar una diferencia significativa entre los promedios de ambos grupos, tomando en cuenta la desviación estándar, el nivel de confianza, y el poder estadístico deseado.
+
+    \item[Diferencias entre Proporciones:] Usado para comparar proporciones entre dos grupos.
+\end{description}
+
+\subsection{Criterios de Selección}
+Son los criterios que utilizarán para incluir, excluir, eliminar y estratificar a quiénes participen en el estudio:
+\begin{description}
+ \item[Inclusión:] Todos los requerimientos que sí se deben cumplir
+ \item[Exclusión:] Las características que si están presentes implicaran la no inclusión en el estudio
+ \item[Eliminación:] Son los criterios para excluir a un participante que ya había sido incluido.
+ \item[Estratificación:] Los los criterios de agrupamiento de los participantes
+\end{description}
+
+Lo anteriormente descrito se ejemplifica en el \cdr\ref{cdr:criterios}.
+
+\begin{table}
+ \centering
+ \caption{Criterios de selección y agrupamiento de las participantes en este protocolo de investigación}
+ \label{cdr:criterios}
+ \begin{tabular}{p{0.75\textwidth}}
+ 	\multicolumn{1}{c}{\bf Criterios}\\
+ 	%
+    \textbf{Inclusión}\\ \hline\\[-2em]
+    \begin{itemize}[itemsep=0.3em]
+ 	  %Criterios Generales
+     \item Embarazada SDG entre 20 y 40 SDG
+     \item IMC pregestacional normal a sobrepeso
+     \item Entre 18 y 35 años de edad
+     \item Estar cursando máximo el tercer embarazo
+ 	\end{itemize}\\
+    %
+    \textbf{Exclusión}\\ \hline\\[-2em]
+    \begin{itemize}[itemsep=0.3em]
+     \item Antecedentes de hipertensión o diabetes previas al embarazo
+     \item Antecedentes de enfermedades autoinmunes
+     \item Diagnóstico o tratamiento de enfermedades psiquiátricas
+     \item Antecedente de trastorno hipetensivo en embarazos previos o actual
+     \item Antecedente de diabetes gestacional en embarazos previos o actual
+     \item Diabetes gestacional durante el embarazo actual
+    \end{itemize}\\
+   %
+   \textbf{Eliminación}\\ \hline\\[-2em]
+   \begin{itemize}[itemsep=0.3em] 
+    \item Participante revocó su consentimiento
+    \item Participante no concluyó la adquisición
+    \item No es posible eliminar el ruido de las señales
+   \end{itemize}\\
+   %
+   \textbf{Agrupamiento (Intervalo de SDG)}\\ \hline\\[-2em]
+ 	\begin{itemize}[itemsep=0.3em]
+ 	 %Criterios agrupamiento
+     \item Controles A (20--33.6)
+     \item Controles B (34--42)
+     \item PE Temprana (20--33.6)
+     \item PE Tardía (34--42)
+ 	\end{itemize} \\[-1em]
+   \hline     
+ \end{tabular}
+\end{table}
+
+\section{Variables de Estudio y su Operacionalización}
+Las variables independientes son aquellas que el investigador modifica o selecciona para analizar su impacto sobre otra variable, denominada variable dependiente. En el contexto de la salud, las variables independientes frecuentemente incluyen factores de riesgo, intervenciones, o tratamientos.
+
+\ej Asumiendo un estudio sobre el efecto del ejercicio en la presión arterial en adultos hipertensos:
+\begin{description}
+ \item[Variable independiente:] El tipo de ejercicio físico (aeróbico, anaeróbico, de resistencia).
+ \item[Operacionalización:] Definir la frecuencia, duración e intensidad de cada tipo de ejercicio. Por ejemplo: ejercicio aeróbico moderado durante 30 minutos, tres veces por semana.
+\end{description}
+
+\ej Asumiendo un ensayo clínico sobre la efectividad de un nuevo medicamento para la diabetes:
+\begin{description}
+ \item[Variable independiente:] Dosis del medicamento administrado.
+ \item[Operacionalización:] Definir las dosis específicas en miligramos y el tiempo de administración. Por ejemplo: 500~mg de medicamento A, administrado dos veces al día durante 12 semanas.
+\end{description}
+
+
+\textbf{Las variables dependientes} son resultados observados en respuesta a la variable independiente; comúnmente incluyen resultados clínicos, cambios en biomarcadores, o indicadores de salud. Considerando las mismas suposiciones para los ejemplos.
+
+\ej Estudio sobre el efecto del ejercicio en la presión arterial en adultos hipertensos:
+\begin{description}
+    \item[Variable dependiente:] Niveles de presión arterial.
+    \item[Operacionalización:] Medir la presión arterial en milímetros de mercurio (mm Hg) antes y después de la intervención, usando un dispositivo validado y bajo condiciones controladas.
+\end{description}
+
+\ej Ensayo clínico sobre la efectividad de un nuevo medicamento para la diabetes:
+\begin{description}
+    \item[Variable dependiente:] Nivel de glucosa en sangre en ayunas.
+    \item[Operacionalización:] Medir la glucosa en sangre en miligramos por decilitro $mg/dL$ a intervalos regulares.
+\end{description}
+
+\section{Plan de análisis}
+\subsection{Estadística frecuentista}
+\begin{enumerate}
+    \item Identificación del Tipo de Variable
+    \begin{description}
+        \item[Numérica (continua):] por ejemplo; presión arterial, niveles de glucosa.
+        \item[Categórica ordinal:] por ejemplo; clasificaciones de dolor (leve, moderado, severo).
+        \item[Categórica nominal:] por ejemplo; géneros, tipos de tratamiento.
+    \end{description}
+
+    \item Número de Grupos a Comparar
+    \begin{description}
+        \item[Comparación entre dos grupos:] por ejemplo; comparación de pacientes con y sin tratamiento.
+        \item[Comparación entre más de dos grupos:] por ejemplo; comparación de varios tratamientos.
+    \end{description}
+
+    \item Variables Numéricas
+    \begin{enumerate}
+        \item Evaluar Normalidad y Homogeneidad de Varianza
+        \begin{description}
+            \item[Pruebas:] Realizar una prueba de normalidad (Shapiro-Wilk o Kolmogorov-Smirnov) y verificar la homogeneidad de varianza (Levene o Bartlett).
+        \end{description}
+
+        \item Datos Normales y Varianzas Homogéneas
+        \begin{enumerate}
+            \item Dos Grupos: Usar prueba t para muestras independientes.
+            \item Más de Dos Grupos: Usar ANOVA de una vía.
+                \begin{description}
+                    \item[Post hoc:] Si el ANOVA es significativo, realizar comparaciones múltiples:
+                        \begin{description}
+                            \item[Tukey:] Para comparaciones pareadas cuando los tamaños de grupo son similares.
+                            \item[Scheffé:] Útil para comparaciones que no se especificaron a priori y si los tamaños de grupo son desiguales.
+                            \item[Dunnett:] Para comparar un grupo control con varios tratamientos.
+                            \item[Bonferroni:] Para ajustar comparaciones múltiples y evitar errores tipo I.
+                        \end{description}
+                \end{description}
+        \end{enumerate}
+
+        \item Datos No Normales o Varianzas Heterogéneas
+        \begin{enumerate}
+            \item Dos Grupos: Usar Mann-Whitney U.
+            \item Más de Dos Grupos: Usar Kruskal-Wallis.
+                \begin{description}
+                    \item[Post hoc:] Si Kruskal-Wallis es significativo:
+                        \begin{description}
+                            \item[Dunn con ajuste Bonferroni:] Para comparar pares específicos.
+                            \item[Nemenyi:] Alternativa en caso de datos no paramétricos.
+                        \end{description}
+                \end{description}
+        \end{enumerate}
+    \end{enumerate}
+
+    \item Variables Categóricas Nominales
+    \begin{description}
+        \item[Dos Grupos:] Usar prueba de Chi-cuadrado o prueba exacta de Fisher para tamaños pequeños.
+        \item[Más de Dos Grupos:] Usar Chi-cuadrado en tablas de contingencia.
+    \end{description}
+
+    \item Variables Categóricas Ordinales
+    \begin{description}
+        \item[Dos Grupos:] Usar Mann-Whitney U para comparar rangos.
+        \item[Más de Dos Grupos:] Usar Kruskal-Wallis.
+            \begin{description}
+                \item[Post hoc:] Si es significativo:
+                    \begin{description}
+                        \item[Dunn o Nemenyi:] Para comparaciones pareadas.
+                    \end{description}
+            \end{description}
+    \end{description}
+
+    \item Mediciones Repetidas (Diseños Intra-Sujeto)
+    \begin{description}
+        \item[Dos Grupos:] Usar Wilcoxon si los datos no son normales; prueba t para muestras relacionadas si los datos son normales.
+        \item[Más de Dos Grupos:]
+            \begin{description}
+                \item[Friedman:] Para datos no paramétricos.
+                    \begin{description}
+                        \item[Post hoc:] Realizar Wilcoxon con ajuste Bonferroni entre pares.
+                    \end{description}
+                \item[ANOVA de medidas repetidas:] Para datos normales.
+                    \begin{description}
+                        \item[Post hoc:] Utilizar Tukey de medidas repetidas o contrastes específicos para identificar diferencias.
+                    \end{description}
+            \end{description}
+    \end{description}
+
+    \item Análisis de Supervivencia
+    \begin{description}
+        \item[Estudios de tiempo hasta un evento:] (muerte, recaída, etc.)
+            \begin{description}
+                \item[Curva de Kaplan-Meier:] Para analizar la probabilidad de supervivencia a lo largo del tiempo y comparar diferentes grupos.
+                \item[Prueba de Log-Rank:] Para comparar curvas de supervivencia entre dos o más grupos.
+                \item[Modelos de Cox:] Para ajustar el efecto de múltiples variables independientes en el tiempo de supervivencia.
+            \end{description}
+    \end{description}
+\end{enumerate}
+
+\subsection{Evaluación del desempeño de clasificadores y regresión}
+\begin{enumerate}
+    \item Definir el Tipo de Modelo y Datos
+    \begin{description}
+        \item[Clasificadores (Binarios o Multiclase):] modelos de predicción de dos clases o de clases múltiples.
+        \item[Modelos de Regresión:] modelos que predicen valores continuos, por ejemplo predicción de la presión arterial o niveles de glucosa.
+    \end{description}
+
+    \item Seleccionar Métricas de Desempeño para Clasificadores
+    \begin{description}
+        \item[Matriz de confusión:] Es una matriz que organiza en las columnas los valores reales \textit{ground true} con los valores estimados por el clasificador y cuantifica el número de elementos de cada fila-columna. Siento un clasificador perfecto aquel que cuyos valores distintos de cero únicamente se localizan en la diagonal. Además, a partir de esta construcción se calculan el resto de las métricas de desempeño de clasificadores.
+        \item[AUROC (Área bajo la curva ROC):] Es útil para observar el balance entre sensibilidad y especificidad.
+        \item[Exactitud (accuracy):] Proporción de predicciones correctas respecto al total, no es confiable en el caso de clases desbalanceadas.
+        \item[Recall (Sensibilidad):] Proporción de verdaderos positivos entre todos los positivos reales.
+        \item[Especificidad:] Proporción de verdaderos negativos entre todos los negativos reales.
+        \item[F1-Score:] Promedio armónico de precisión y recall, adecuado para clases desbalanceadas.
+        \item[Precisión:] Proporción de verdaderos positivos entre todas las predicciones positivas, útil cuando se deben minimizar falsos positivos.
+    \end{description}
+
+    \item Seleccionar Métricas de Desempeño para Modelos de Regresión
+    \begin{description}
+        \item[Error Absoluto Medio (MAE):] Promedio de las diferencias absolutas entre las predicciones y los valores reales
+        \item[Error Cuadrático Medio (MSE):] Promedio de los cuadrados de las diferencias.
+        \item[Raíz del Error Cuadrático Medio (RMSE):] Raíz cuadrada del MSE, útil para interpretar el error en las mismas unidades que los datos.
+        \item[R-cuadrado (R$^2$):] Mide la proporción de la varianza explicada por el modelo
+    \end{description}
+
+    \item Métodos de Remuestreo
+    \begin{description}
+        \item[Validación cruzada (Cross-Validation):] Divide los datos en $k$-partes o vías para entrenar con $k-1$ partes y validar en la restante; este proceso se repite para los diferentes $k$. El caso particular cuando solo se deja un dato para validar se le conoce como Leave-One-Out (LOO).
+        \item[Validación en datos no vistos (Hold-Out Validation):] Reserva una parte de los datos para evaluar el modelo tras el entrenamiento, se utiliza para medir la generalización del modelo.
+        \item[Bootstraping:] Método de remuestreo que crea múltiples muestras aleatorias con reemplazo del conjunto de datos original, frecuentemente en una proporción 60\%, 40\% datos de entrenamiento y validación, es utilizado en conjuntos de datos pequeños.
+    \end{description}
+
+    \item Comparación de Clasificadores
+    \begin{description}
+        \item[Curvas ROC y AUROC:] Comparar las curvas ROC y sus AUROC; un AUROC más alto indica mejor capacidad de discriminación.
+        \item[Curvas Precision-Recall:] Útiles para clases desbalanceadas, se comparan precisión y recall para observar el equilibrio en cada clasificador.
+        \item[Métricas de Clasificación:] Comparar recall, especificidad, precisión, F1-score y exactitud entre clasificadores para determinar cuál es el más efectivo.
+    \end{description}
+
+    \item Comparación de Modelos de Regresión
+    \begin{description}
+        \item[R-cuadrado (R$^2$):] Comparar el R$^2$ de cada modelo.
+        \item[Errores (MAE, MSE, RMSE):] Comparar los errores absolutos y cuadráticos.
+    \end{description}
+
+\end{enumerate}
+
+\newpage
+
+%Biblatex
+%============
+\printbibliography
+
+%Bibtex
+%============
+%\bibliographystyle{unsrt}
+%%\bibliography{phd}
+
+\newpage
+\appendix
+\section{Introducción a \LaTeX}
+Este documento es una guía básica para el uso de \LaTeX{} en la redacción de documentos técnicos. Se abordarán los siguientes tópicos: formatos de texto, secciones, ecuaciones, matrices, cuadros, imágenes y citas.
+
+\LaTeX{} es un sistema que utiliza esencialmente dos tipos de estructuras de marcado: \textbf{comandos} y \textbf{ambientes}.
+
+1) \textbf{Comandos}: Todos los comandos se marcan con el símbolo \texttt{\textbackslash}, seguido del nombre del comando. Los comandos pueden o no tener parámetros. Los parámetros obligatorios se incluyen entre llaves \texttt{\{\}}, y las opciones adicionales se especifican entre corchetes \texttt{[]}. Por ejemplo, el comando para poner texto en negrita es \texttt{\textbackslash textbf\{\}}, donde el texto que queremos en negrita se pone entre llaves:
+
+\ej
+\begin{lstlisting}[caption={Fuente en negrita}, label={lst:basic:bold}]
+\textbf{Este es un texto en negrita}.
+\end{lstlisting}
+
+\ej
+A continuación se muestra cómo ajustar el tamaño de una imagen con el comando \texttt{\textbackslash includegraphics[width=0.5\textbackslash textwidth]\{imagen.jpg\}}, donde el parámetro opcional \texttt{[width=0.5\textbackslash textwidth]} define el ancho de la imagen.
+
+2) \textbf{Ambientes}: Estos están definidos por el uso de \texttt{\textbackslash begin\{\}} y \texttt{\textbackslash end\{\}}, y se utilizan para estructurar bloques de contenido que tienen un formato específico, como párrafos centrados, listas o ecuaciones. A diferencia de los comandos, los ambientes pueden tener opciones adicionales que permitan mayor personalización en la organización y estilo del contenido. 
+
+\ej A continuación se muestra cómo se utilizaría el ambiente \texttt{equation}
+
+\begin{lstlisting}[caption={Ejemplo básico de ambiente equation}, label={lst:basic:eq}]
+\begin{equation}
+    E = mc^2
+\end{equation}
+\end{lstlisting}
+
+
+Cuyo resultado sería el siguiente:
+\begin{equation}
+ E=mc^2    
+\end{equation}
+
+\subsection{Formato de texto: Negritas e Itálicas}
+Para resaltar texto en \textbf{negrita} o en \textit{itálica}:
+\begin{lstlisting}[caption={Formato en negritas e itálicas}, label={lst:basic:font}]
+Para resaltar texto en \textbf{negrita} o en \textit{italica}:
+\end{lstlisting}
+
+
+\subsection{Secciones y subsecciones}
+Las secciones y subsecciones se utilizan para estructurar el contenido en diferentes niveles jerárquicos en el documento. Aunque existen más niveles, en este tutorial únicamente se describen los siguientes:
+\begin{lstlisting}[caption={Ejemplos de secciones y subsecciones en un documento}]
+\section{Titulo de seccion}
+\subsection{Titulo de subseccion}
+\end{lstlisting}
+
+\subsection{Ecuaciones}
+Una de las herramientas que distinguen a \LaTeX es su sistema de \textit{renderizado} de ecuaciones. Este sistema tiene diferentes ambientes. A continuación se describen los más utilizados
+
+\ej Función de decisión de una máquina de soporte vectorial con un kernel $K$, ec.~\ref{eq:ksvm}
+\begin{equation}
+f(x) = \text{sign} \left( \sum_{i=1}^{N} \alpha_i y_i K(x_i, x) + b \right)\label{eq:ksvm}
+\end{equation}
+
+La expresión anterior se obtiene con el uso del ambiente \textit{equation} de la siguiente forma:
+\begin{lstlisting}[caption={Ambiente equation}]
+\begin{equation}
+f(x) = \text{sign} \left( \sum_{i=1}^{N} \alpha_i y_i K(x_i, x) + b \right)\label{eq:ksvm}
+\end{equation}
+\end{lstlisting}
+
+Para generar ecuaciones en línea con el texto se pueden utilizar '\verb|$|' o '\verb|\(|'
+
+\ej donde \( K(x_i, x) = \exp\left(-\gamma \| x_i - x \|^2\right) \) es el núcleo de función de base radial (RBF),  $\alpha_i$ son... Este resultado se obtiene de la siguiente forma:
+\begin{lstlisting}[caption={Ambientes de ecuaciones en línea y sin numeración}]
+\( K(x_i, x) = \exp\left(-\gamma \| x_i - x \|^2\right) \)
+
+$\alpha_i$
+\end{lstlisting}
+
+El ambiente \textit{align} se utiliza para secuencias de ecuaciones para que estén alineadas.
+
+\subsection{Matrices}
+Para representar matrices, existen los ambientes \textit{bmatrix} y \textit{pmatrix}.
+
+\ej La matriz $A$ 
+\[
+A = \begin{bmatrix} 
+      4 & 3 \\
+      6 & 3
+    \end{bmatrix} = 
+    \begin{bmatrix} 
+      1 & 0 \\ 
+      1.5 & 1 
+    \end{bmatrix}
+    \begin{bmatrix}
+      4 & 3 \\ 
+      0 & -1.5
+    \end{bmatrix}
+\]
+
+se obtiene con el siguiente código:
+\begin{lstlisting}[caption={Representación de matrices}]
+\[
+A = \begin{bmatrix} 
+      4 & 3 \\
+      6 & 3
+    \end{bmatrix} = 
+    \begin{bmatrix} 
+      1 & 0 \\ 
+      1.5 & 1 
+    \end{bmatrix}
+    \begin{bmatrix}
+      4 & 3 \\ 
+      0 & -1.5
+    \end{bmatrix}
+\]
+\end{lstlisting}
+
+\subsection{Incluir imágenes}
+Para insertar imágenes, se utiliza el paquete \textit{graphicx} que debe ser incluido antes del inicio del documento. Luego ya puede utilizarse el ambiente \textit{figure} para incluir imágenes.
+
+\ej Se muestra un snippet para incluir una imagen, contemplando la referencia a la Figura~\ref{fig:figura}, utilizando los comandos \textit{label} para crear una etiqueta y \textit{ref} para referenciarla. Al utilizar el ambiente \textit{figure} también se puede agregar un \textit{caption}:
+\begin{lstlisting}[caption={Incluir paquete graphicx}]
+\documentclass{article}
+
+\usepackage{graphicx}
+
+\begin{document}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{uam-izt-v6}
+    \caption{Descripcion de la imagen}
+    \label{fig:figura}
+\end{figure}
+
+\end{document}
+\end{lstlisting}
+
+El resultado de este código, únicamente contemplando el ambiente \textit{figure} es Figura~\ref{fig:figura}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{uam-izt-v6}
+    \caption{Descripción de la imagen}
+    \label{fig:figura}
+\end{figure}
+
+\subsection{Cuadros}
+Los cuadros se implementan a través del ambiente \textit{table}, que es muy similar al ambiente \textit{figure} en términos del \textit{caption} y \textit{label}-\textit{ref}.
+
+\ej Muestra la sintaxis básica para generar un cuadro, así como agregar un \textit{caption} y una referencia.
+\begin{lstlisting}[caption={Ejemplo básico de un cuadro con el ambiente table}]
+\begin{table}[H]
+    \centering
+    \caption{Ejemplo de tabla con parametros.}
+    \label{tab:cuadro}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        Parametro & Valor & Unidad \\ \hline
+        Longitud & 10 & cm \\ \hline
+        Masa & 2 & kg \\ \hline
+    \end{tabular}
+\end{table}
+\end{lstlisting}
+
+La salida del código anterior es el Cuadro~\ref{tab:cuadro}
+\begin{table}[H]
+    \centering
+    \caption{Ejemplo de tabla con parámetros.}
+    \label{tab:cuadro}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        Parámetro & Valor & Unidad \\ \hline
+        Longitud & 10 & cm \\ \hline
+        Masa & 2 & kg \\ \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Citas y Referencias Bibliográficas\label{ssec:biblatex}}
+Para manejar citas y bibliografía, actualmente se utiliza el sistema \textit{biblatex} y requiere de un archivo \textit{.bib}.
+
+Tomando como ejemplo esta plantilla, en el preámbulo\footnote{Espacio de comandos entre el \textit{documentclass} y el \textit{begin\{document\}}}, o en este caso, en un archivo de estilo, cuya extensión es \textit{.sty}, para incluir el archivo \textit{references.bib} y que tenga el formato que se presenta en este documento se utilizó el siguiente código:
+\begin{lstlisting}[caption={Incluir referencias y darles formato}]
+\usepackage{url}
+\usepackage{hyperref}
+\definecolor{citecolor}{HTML}{57A519}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=citecolor,
+    citecolor=citecolor,
+    urlcolor=citecolor,
+    pdfborder={0 0 0}
+}
+
+\usepackage[
+   backend=biber,
+   style=apa,
+   citestyle=authoryear,
+   maxcitenames=1,
+   sorting=nyt
+]{biblatex}
+\addbibresource{references.bib}
+\DeclareCiteCommand{\parencite}
+ {\textcolor{citecolor}{(\usebibmacro{prenote}}}
+ {\textcolor{citecolor}{\printnames{labelname} \printfield{year}}}
+ {\textcolor{citecolor}{\multicitedelim}}
+ {\textcolor{citecolor}{)\usebibmacro{postnote}}}
+\end{lstlisting}
+
+Para imprimir las referencias se utiliza el siguiente comando:
+\begin{lstlisting}
+    \printbibliography
+\end{lstlisting}
+
+
+\end{document}
