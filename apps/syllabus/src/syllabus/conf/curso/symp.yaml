@@ -1,0 +1,15 @@
+information:
+  short_name: symp
+  name: Secuenciadores y Microprocesadores
+  clave: 2151024
+  trimestre: 26-I
+  aula_virtual: pass
+  grupo: CH51
+  tipo: Ingeniería Biomédica
+
+calenario:
+  init:
+    dayname: lunes
+    day: 19
+    month: enero
+

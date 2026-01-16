@@ -1,0 +1,8 @@
+defaults:
+  - institution: ${institution}
+  - curso: ${curso}
+
+
+docente: Dr. en C. Omar Piña Ramírez
+email: opina.ramirez@izt.uam.mx
+tasks: syllabus

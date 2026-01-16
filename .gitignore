@@ -1,0 +1,9 @@
+.env
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.log
+*.pyc
+__pycache__/
+syllabus.egg-info/
