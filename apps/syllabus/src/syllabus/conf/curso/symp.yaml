@@ -13,3 +13,29 @@ calenario:
     day: 19
     month: enero
 
+data:
+  full: # temario, calificaciones, estudiantes, ponderaciones
+    db: ${oc.env:BD_PATH}
+    tables:
+      unidades: uam_symp_temario_unidades
+      temas: uam_symp_temario_temas
+      subtemas: uam_symp_temario_subtemas
+      estudiantes: uam_curso_current_students
+      eval_items: uam_curso_current_items
+      eval_items_eval: uam_curso_current_items_eval
+
+queries:
+  temario: "SELECT
+        unidades.unidad as num_unidad,
+        temas.tema as num_tema,
+        subtemas.subtema as num_subtema,
+        unidades.descripcion as unidad_titulo,
+        temas.descripcion as tema_titulo,
+        subtemas.descripcion,
+        subtemas.cobertura
+    FROM ${..data.full.tables.unidades} AS unidades
+    JOIN ${..data.full.tables.temas}    AS temas ON unidades.unidad = temas.unidad
+    JOIN ${..data.full.tables.subtemas} AS subtemas
+        ON temas.unidad = subtemas.unidad
+        AND temas.tema = subtemas.tema"
+
