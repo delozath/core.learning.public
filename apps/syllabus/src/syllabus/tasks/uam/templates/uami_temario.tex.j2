@@ -1,0 +1,15 @@
+\section{Temario}
+{% for unidad, temas in temario.items() %}
+\textbf{ {{- unidad -}} }
+  \begin{enumerate}
+  {%- for tema, subtemas in temas.items() %}
+    \item {{ tema }}
+      \begin{enumerate}
+      {% for sub in subtemas -%}
+          \item {{ sub.descripcion }} \textbf{[{{ sub.cobertura }}]}
+      {% endfor -%}
+      \end{enumerate}
+  {%- endfor %}
+  \end{enumerate}
+{% endfor %}
+

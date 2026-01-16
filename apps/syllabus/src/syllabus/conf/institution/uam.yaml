@@ -5,33 +5,3 @@ information:
   address: Av. San Rafael Atlixco No. 186, Col. Vicentina, C.P. 09340, Ciudad de México, México
   website: https://www.uam.mx
   system: Trimestral
-
-calendario:
-  uam_offset: 2 # Semanas de diferencia con el calendario nominal y el de la UAM
-  inicio: 2026.01.19
-  fin: 2026.04.15
-
-  sesiones: # Cada linea representa un dia de la semana, iniciando en lunes
-    teoria: 
-      - AT107
-      - 0
-      - AT107
-      - 0
-      - AT107
-    lab:
-      - 0
-      - AT109
-      - 0
-      - 0
-      - 0
-
-  eventos:
-    feriado:
-      - 2026.02.05
-      - 2026.03.04
-      - 2026.04.02
-      - 2026.04.03     
-    examen:
-      - 2026.02.09
-      - 2026.03.13
-      - 2026.03.06

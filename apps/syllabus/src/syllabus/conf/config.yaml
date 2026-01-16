@@ -10,24 +10,27 @@ task: syllabus
 
 
 constantes:
-  dias:
-    Monday: lunes
-    Tuesday: martes
-    Wednesday: miércoles
-    Thursday: jueves
-    Friday: viernes
-    Saturday: sábado
-    Sunday: domingo
-  meses:
-    January: enero
-    February: febrero
-    March: marzo
-    April: abril
-    May: mayo
-    June: junio
-    July: julio
-    August: agosto
-    September: septiembre
-    October: octubre
-    November: noviembre
-    December: diciembre
+  path:
+    root: ${oc.env:ROOT}
+  traduccion:
+    dias:
+      Monday: lunes
+      Tuesday: martes
+      Wednesday: miércoles
+      Thursday: jueves
+      Friday: viernes
+      Saturday: sábado
+      Sunday: domingo
+    meses:
+      January: enero
+      February: febrero
+      March: marzo
+      April: abril
+      May: mayo
+      June: junio
+      July: julio
+      August: agosto
+      September: septiembre
+      October: octubre
+      November: noviembre
+      December: diciembre
