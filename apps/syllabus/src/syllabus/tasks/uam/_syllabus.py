@@ -8,4 +8,5 @@ class SyllabusUAMTask(SyllabusPort):
     
     def build(self):
         mock = f"Syllabus de la UAM para el curso {self.cfg.curso.information.name} ({self.cfg.curso.information.clave})"
+        print(mock)
         
