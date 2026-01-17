@@ -1,14 +1,14 @@
+from regex import T
 from omegaconf import DictConfig
 
 
 import pandas as pd
 
-from jinja2 import Environment, FileSystemLoader
-
 
 from syllabus.ports.tasks import SyllabusPort
 from syllabus.data.loader import LoaderResolver
 from syllabus.tasks.uam.trimestre import Calendario
+from syllabus.tasks.uam.jinja_driver import JinjaUAMDriver
 
 
 class SyllabusUAMTask(SyllabusPort):
@@ -35,21 +35,15 @@ class SyllabusUAMTask(SyllabusPort):
         calendar.trimestre(
             TRIM_INIT,
             TRIM_END,
-            TRANSLATE,
-            TRIM_OFFSET
+            TRIM_OFFSET,
+            TRIM_SESSIONS,
+            TRANSLATE
         )
-        sesiones = calendar.sesiones(calendar.trim, TRIM_SESSIONS)
-        cal_clean = calendar.remover_eventos(sesiones, TRIM_SESSIONS)
-        env = Environment(
-            loader=FileSystemLoader(
-                f"{self.cfg.constantes.path.root}/syllabus/tasks/uam/templates/"
-            )
-        )
-
-        template = env.get_template("uami_temario.tex.j2")
-        temario_render = template.render(
-            temario=topicos
-        )
+        eventos = calendar.check_eventos(TRIM_SESSIONS.eventos)
+        breakpoint()
+        
+        jinja = JinjaUAMDriver(self.cfg)
+        print(jinja.render_temario(topicos))
         breakpoint()
         print(mock)
         breakpoint()
