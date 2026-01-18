@@ -52,8 +52,61 @@ delozath@gmail.com
    TEX_FILES_PATH=/ruta/a/tu/carpeta/de/archivos/tex/
    ```
 
-1. Ejecuta la aplicación:
+## Estructura del Proyecto
+<details>
+<summary>Árbol del proyecto</summary>
+
+```bash
+└── apps
+    └── syllabus
+        ├── files
+        │   ├── common.sty
+        │   ├── cursos.db
+        │   ├── lini-v1.png
+        │   ├── notas.csv
+        │   ├── temario.csv
+        │   ├── uam-izt-v6.png
+        │   └── uea_planeacion.sty
+        ├── pyproject.toml
+        ├── README.md
+        └── src
+            ├── syllabus
+            │   ├── conf
+            │   │   ├── config.yaml
+            │   │   ├── curso
+            │   │   │   └── symp.yaml
+            │   │   └── institution
+            │   │       └── uam.yaml
+            │   ├── core.py
+            │   ├── data
+            │   │   ├── _csv_driver.py
+            │   │   ├── loader.py
+            │   │   └── _sqlite_driver.py
+            │   ├── main.py
+            │   ├── outputs
+            │   ├── ports
+            │   │   ├── dbs.py
+            │   │   └── tasks.py
+            │   ├── tasks
+            │   │   └── uam
+            │   │       ├── __init__.py
+            │   │       ├── jinja_driver.py
+            │   │       ├── _syllabus.py
+            │   │       ├── templates
+            │   │       │   ├── uami_eventos.tex.j2
+            │   │       │   ├── uami_sesiones.tex.j2
+            │   │       │   └── uami_temario.tex.j2
+            │   │       └── trimestre.py
+            │   └── utils.py
+            └── 
+```
+</details>
+
+## Uso
+Ejecuta la aplicación desde CLI:
    ```bash
    >> apps/syllabus$ python -m syllabus.main institution=uam curso=symp task=syllabus +db_type='csv'
    ```
 Las opciones institucion y curso hacen los mapeos correspondientes a los archivos de configuración YAML en `src/syllabus/conf/institution/` y `src/syllabus/conf/curso/`. El parámetro `db_type` selecciona la fuente de datos, ya sea `sqlite` o `csv`.
+
+En la carpeta files/ se encuentran los archivos de datos y estilos necesarios para la generación de los syllabus UAM-I de la UEA Secuenciadores y Microprocesadores.
