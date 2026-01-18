@@ -10,7 +10,7 @@ Cada aplicación/recurso de aprendizaje está organizada en su propia carpeta de
 -----
 
 ## Aplicaciones Disponibles
-### [Syllabus and Note Generator](syllabus/README.md)
+### [Syllabus and Note Generator](apps/syllabus/README.md)
 
 Una aplicación para crear y gestionar syllabus de cursos, actualmente tiene implementada la generación en formato LaTeX a partir de los datos obtenidos desde una base de datos SQLite o desde archivos CSV.
 
