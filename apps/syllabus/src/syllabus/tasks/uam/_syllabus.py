@@ -45,7 +45,7 @@ class SyllabusUAMTask(SyllabusOrchestratorPort):
         CURSO_TRIM = self.cfg.curso.information.trimestre
 
         TRANSLATE = self.cfg.constantes.traduccion
-        breakpoint()
+        
         database = self._connect_db(DB_NAME, driver=DB_TYPE)
         temario = database.query(DB_TEMARIO)
         topicos = self.topicos_asdict(temario)
