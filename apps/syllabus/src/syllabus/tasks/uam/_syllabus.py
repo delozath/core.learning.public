@@ -2,7 +2,6 @@ import os
 from pathlib import Path
 from typing import Self
 from dotenv import load_dotenv
-from pyparsing import C
 load_dotenv()
 
 
@@ -35,7 +34,7 @@ class SyllabusUAMTask(SyllabusOrchestratorPort):
         """
         DB_TYPE = self.cfg.db_type
         DB_NAME = self.cfg.curso.data[DB_TYPE].source
-        DB_TEMARIO = self.cfg.curso.queries.temario
+        DB_TEMARIO = self.cfg.curso.data[DB_TYPE].queries.temario
 
         TRIM_INIT = self.cfg.curso.calendario.inicio
         TRIM_END = self.cfg.curso.calendario.fin
@@ -46,7 +45,7 @@ class SyllabusUAMTask(SyllabusOrchestratorPort):
         CURSO_TRIM = self.cfg.curso.information.trimestre
 
         TRANSLATE = self.cfg.constantes.traduccion
-
+        breakpoint()
         database = self._connect_db(DB_NAME, driver=DB_TYPE)
         temario = database.query(DB_TEMARIO)
         topicos = self.topicos_asdict(temario)

@@ -1,0 +1,96 @@
+%================ ENCODING & IDIOMA ================
+\usepackage[spanish]{babel}
+\decimalpoint
+
+%================ FUENTES ================
+\usepackage{fontspec}
+\usepackage{unicode-math}
+
+%================ MATEMÁTICAS ================
+\usepackage{amsmath}
+
+%================ ESTILO GENERAL ================
+\parindent 0em
+\usepackage{setspace}
+\onehalfspacing
+\widowpenalty=500
+\clubpenalty=300
+
+\usepackage{multirow}
+\usepackage[small,bf]{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{longtable}
+
+\usepackage{enumitem}
+\setlist[1]{itemsep=-1em}
+\setlist[2]{itemsep=-1em}
+\setlist[3]{itemsep=-1em}
+\setitemize{itemsep=-1em}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1}
+\setenumerate[2]{label=\theenumi. \arabic*.}
+\setlist[itemize,1]{topsep=3pt, itemsep=3pt, parsep=0pt, leftmargin=1cm}
+\setlist[itemize,2]{topsep=4pt, itemsep=2pt, parsep=0pt, leftmargin=0.5cm}
+
+\usepackage{footnote}
+\makesavenoteenv{tabular}
+
+\usepackage{parskip}
+\setlength{\parskip}{1em plus 0.2em minus 0.1em}
+\setlength{\skip\footins}{2em}
+
+%================ COLORES Y ENLACES ================
+\usepackage{color}
+\usepackage[table]{xcolor}
+\definecolor{UAM}{HTML}{57A519}
+
+\usepackage[
+  pdfborder={0 0 0},
+  colorlinks=true,
+  linkcolor=UAM,
+  urlcolor=UAM,
+  citecolor=UAM
+]{hyperref}
+
+%================ GRÁFICOS ================
+\usepackage{graphicx}
+%\graphicspath{
+%      {/paths/a/imagenes/}
+%      {/paths/a/otras/imagenes/}
+%}
+
+\usepackage{pdflscape}
+
+%================ ENCABEZADOS Y PIES DE PÁGINA ================
+\usepackage[left=2.5cm, right=2.5cm, top=3cm, bottom=2.5cm]{geometry}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{%
+\begin{minipage}[l][1.5cm][c]{.4\textwidth}
+  \hspace{-2cm}
+  \vspace{1cm}
+  \includegraphics[width=0.8\textwidth]{uam-izt-v6}
+  \end{minipage}
+}
+
+\fancyhead[R]{%
+  \begin{minipage}[l][1.5cm][c]{.4\textwidth}
+    \hspace{6cm}
+    \vspace{1cm}
+    \includegraphics[width=0.2\textwidth]{lini-v1}
+  \end{minipage}
+}
+
+\renewcommand{\headrulewidth}{0pt} 
+
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+%================ BIBLIOGRAFÍA ================
+\usepackage{csquotes}
+
+

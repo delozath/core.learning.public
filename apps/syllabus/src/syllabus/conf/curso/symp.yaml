@@ -60,23 +60,28 @@ data:
       eval_items: uam_curso_current_items
       eval_items_eval: uam_curso_current_items_eval
     
-  csv: # temario
-    source: ${oc.env:DB_PATH}/ejemplo.csv
-    tables: pass
-
-queries:
-  #TODO: Automatizar render de sqlite
-  temario: "SELECT
-        unidades.unidad as num_unidad,
-        temas.tema as num_tema,
-        subtemas.subtema as num_subtema,
-        unidades.descripcion as unidad_titulo,
-        temas.descripcion as tema_titulo,
-        subtemas.descripcion,
-        subtemas.cobertura
-    FROM ${..data.sqlite.tables.unidades} AS unidades
-    JOIN ${..data.sqlite.tables.temas}    AS temas ON unidades.unidad = temas.unidad
-    JOIN ${..data.sqlite.tables.subtemas} AS subtemas
-        ON temas.unidad = subtemas.unidad
-        AND temas.tema = subtemas.tema"
+    queries:
+      #TODO: Automatizar render de sqlite
+      temario: "SELECT
+            unidades.unidad as num_unidad,
+            temas.tema as num_tema,
+            subtemas.subtema as num_subtema,
+            unidades.descripcion as unidad_titulo,
+            temas.descripcion as tema_titulo,
+            subtemas.descripcion,
+            subtemas.cobertura
+        FROM ${...sqlite.tables.unidades} AS unidades
+        JOIN ${...sqlite.tables.temas}    AS temas ON unidades.unidad = temas.unidad
+        JOIN ${...sqlite.tables.subtemas} AS subtemas
+            ON temas.unidad = subtemas.unidad
+            AND temas.tema = subtemas.tema"
+    
+  csv:
+    source:
+      temario: ${oc.env:DB_PATH}/temario.csv
+      notas: ${oc.env:DB_PATH}/notas.csv
+    
+    queries:
+      temario: "temario"
+      
 

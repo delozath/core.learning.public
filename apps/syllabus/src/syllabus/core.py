@@ -14,6 +14,17 @@ class CoreSyllabus:
         self._wire_tasks()
     
     def _wire_tasks(self):
+        """
+        Registra las tareas disponibles en el core de syllabus y las asocia a su respectiva clase
+
+        Este diccionario basa el key del diccionario en una tupla (institution, task)
+        para facilitar la busqueda de la clase correspondiente a la tarea solicitada
+        por el usuario en el archivo de configuración YAML y en la llamada del script.
+
+        En otras palabras, este método es la clave de la extensibilidad del framework,
+        permitiendo agregar nuevas instituciones y tareas sin modificar la estructura
+        principal del core de syllabus.
+        """
         self._register_task = {
             ("UAM-I", "syllabus"): SyllabusUAMTask
         }
@@ -41,5 +52,5 @@ class CoreSyllabus:
         return self._register_task
     
     @register_task.setter
-    def register_task(self, value: dict[tuple[str, str], type]) -> None:
+    def register_task(self, _: dict[tuple[str, str], type]) -> None:
         raise NotImplementedError("Register task is read-only")
