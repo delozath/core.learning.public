@@ -6,12 +6,10 @@ information:
   aula_virtual: pass
   grupo: CH51
   tipo: Ingeniería Biomédica
-
-calenario_tst:
-  init:
-    dayname: lunes
-    day: 19
-    month: enero
+  doc_elab:
+    dia: lunes
+    dia_num: 19
+    mes: enero
 
 calendario:
   uam_offset: 3 # Semanas de diferencia con el calendario nominal y el de la UAM

@@ -94,7 +94,7 @@ class Calendario:
         trim = trim.query("tipo_sesion.notnull()").copy()
         return trim
 
-    def check_eventos(self, evt_dict: DictConfig) -> dict:
+    def check_eventos(self, evt_dict: DictConfig) -> list:
         """
         Remueve los eventos especiales del calendario del trimestre.
 
@@ -115,12 +115,13 @@ class Calendario:
         eventos = {}
         for evt in evt_dict:
             key, info = next(iter(evt.items()), (None, None))
-            breakpoint()
-            mask = pd.to_datetime(dt).intersection(trim.index)
+            mask = pd.to_datetime(info.fechas).intersection(trim.index)
             if mask.empty:
                 print(f"\nNingún evento tipo '{evt}' en el trimestre")
             else:
-                eventos[evt] = trim.loc[mask].to_dict(orient='records')
+                tmp = trim.loc[mask].reset_index().copy()
+                tmp['index'] = tmp['index'].astype(str)
+                eventos[info.name] = tmp[['index', 'semana_uam']].to_dict(orient='records')
         
         return eventos
 

@@ -1,0 +1,22 @@
+\begin{center}
+\begin{tabular}{ccccc}
+\multicolumn{5}{c}{\bf Sesiones}\\
+\bf Lunes
+  &\bf Martes
+  &\bf Miércoles
+  &\bf Jueves
+  &\bf Viernes\\\hline
+
+{%- for s in sesiones %}
+  {%- for id, tipo in s.items() %}
+ \multicolumn{5}{l}{ \bf {{ tipo.name }} }\\{{ "\n" }}
+    {%- for lugar in tipo.dias -%}
+{{ lugar if lugar != 0 else "~" }}{% if not loop.last %} & {% endif %}
+    {%- endfor -%}
+\\{{ "\n" }}
+  {%- endfor -%}
+{%- endfor -%}
+
+\hline
+\end{tabular}
+\end{center}
