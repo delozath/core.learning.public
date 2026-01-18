@@ -1,0 +1,54 @@
+,num_unidad,num_tema,num_subtema,unidad_titulo,tema_titulo,descripcion,cobertura
+0,1,1,1,Fundamentos de programación,Programación estructurada,Tipos de datos,opcional
+1,1,1,2,Fundamentos de programación,Programación estructurada,Estructuras de control,opcional
+2,1,1,3,Fundamentos de programación,Programación estructurada,Estructuras de datos,fundamental
+3,1,2,1,Fundamentos de programación,Programación orientada a objetos,Modelando la realidad,opcional
+4,1,2,2,Fundamentos de programación,Programación orientada a objetos,Dualidad clase-objeto,fundamental
+5,1,2,3,Fundamentos de programación,Programación orientada a objetos,Métodos y atributos,fundamental
+6,1,2,4,Fundamentos de programación,Programación orientada a objetos,Relación entre clases,opcional
+7,1,2,5,Fundamentos de programación,Programación orientada a objetos,Mecanismo de herencia,opcional
+8,1,3,1,Fundamentos de programación,Proceso de compilación e interpretación de código,Compilación a ensamblador y código de máquina,relevante
+9,1,3,2,Fundamentos de programación,Proceso de compilación e interpretación de código,Interpretación de código y máquinas virtuales,relevante
+10,2,1,1,Modelado de sistemas basado en estados,Diseño e implementación de máquinas de estados finitos (FSM),Repaso de propiedades de las FSM,opcional
+11,2,1,2,Modelado de sistemas basado en estados,Diseño e implementación de máquinas de estados finitos (FSM),Implementación de FSM en VHDL y FPGA,opcional
+12,2,2,1,Modelado de sistemas basado en estados,Modelado con máquinas de estado algorítmicas (ASM),Definición de las cartas ASM,fundamental
+13,2,2,2,Modelado de sistemas basado en estados,Modelado con máquinas de estado algorítmicas (ASM),Implementación de las ASM en VHDL,fundamental
+14,2,3,1,Modelado de sistemas basado en estados,Síntesis de sistemas basados en ASM,Secuencias de instrucciones,fundamental
+15,2,3,2,Modelado de sistemas basado en estados,Síntesis de sistemas basados en ASM,Main loop,fundamental
+16,2,3,3,Modelado de sistemas basado en estados,Síntesis de sistemas basados en ASM,Implementación en lenguajes de alto nivel,fundamental
+17,2,3,4,Modelado de sistemas basado en estados,Síntesis de sistemas basados en ASM,Implementación optimizada,fundamental
+18,3,1,1,Arquitectura de microprocesadores,Máquina de Turing,La cinta infinita y las operaciones,opcional
+19,3,1,2,Arquitectura de microprocesadores,Máquina de Turing,Definición formal de algoritmo,opcional
+20,3,2,1,Arquitectura de microprocesadores,Arquitectura von Neumann,"Definición de bloques básicos: ALU, UC, registros y memoria",fundamental
+21,3,2,2,Arquitectura de microprocesadores,Arquitectura von Neumann,"Instrucciones: tipos, código de operación",opcional
+22,3,2,3,Arquitectura de microprocesadores,Arquitectura von Neumann,Repertorio de instrucciones,relevante
+23,3,2,4,Arquitectura de microprocesadores,Arquitectura von Neumann,Ejecución de instrucciones FDES,fundamental
+24,4,1,1,Microcontroladores y dispositivos periféricos,Microprocesador vs Microcontrolador,Cuadro comparativo entre microprocesadores y microcontroladores,fundamental
+25,4,1,2,Microcontroladores y dispositivos periféricos,Microprocesador vs Microcontrolador,Diferencias de aplicaciones,fundamental
+26,4,2,1,Microcontroladores y dispositivos periféricos,Funcionamiento básico de microcontroladores,Mapeo de dispositivos periféricos,fundamental
+27,4,2,2,Microcontroladores y dispositivos periféricos,Funcionamiento básico de microcontroladores,Configuración de dispositivos periféricos,fundamental
+28,4,3,1,Microcontroladores y dispositivos periféricos,Implementación de sistemas con dispositivos periféricos de un microcontrolador,Puertos de entrada y salida Pull-Up y Pull-Down,fundamental
+29,4,3,2,Microcontroladores y dispositivos periféricos,Implementación de sistemas con dispositivos periféricos de un microcontrolador,Medición digital del tiempo,fundamental
+30,4,3,3,Microcontroladores y dispositivos periféricos,Implementación de sistemas con dispositivos periféricos de un microcontrolador,Conversión Analógico-Digital,fundamental
+31,4,3,4,Microcontroladores y dispositivos periféricos,Implementación de sistemas con dispositivos periféricos de un microcontrolador,Unidad asincrónica de transmisión y recepción (UART),relevante
+32,5,1,1,Atención de eventos generados por hardware,Definición y propiedades de una interrupción,Concepto abstracto de interrupción,fundamental
+33,5,1,2,Atención de eventos generados por hardware,Definición y propiedades de una interrupción,Mapeo de memoria de las interrupciones,fundamental
+34,5,1,3,Atención de eventos generados por hardware,Definición y propiedades de una interrupción,Atención a la interrupción (Callback),fundamental
+35,5,2,1,Atención de eventos generados por hardware,Implementación de interrupciones en lenguaje de alto nivel,Interrupción generada por cambios en puertos digitales,fundamental
+36,5,2,2,Atención de eventos generados por hardware,Implementación de interrupciones en lenguaje de alto nivel,Interrupción generada por temporizadores,fundamental
+37,5,2,3,Atención de eventos generados por hardware,Implementación de interrupciones en lenguaje de alto nivel,Gestión de múltiples interrupciones,fundamental
+38,6,1,1,Análisis de arquitecturas de microprocesadores,Variantes de arquitecturas,Arquitectura Harvard,fundamental
+39,6,1,2,Análisis de arquitecturas de microprocesadores,Variantes de arquitecturas,Secuenciadores cableados (SC),opcional
+40,6,1,3,Análisis de arquitecturas de microprocesadores,Variantes de arquitecturas,Secuenciador microprogramado (SMP),opcional
+41,6,2,1,Análisis de arquitecturas de microprocesadores,Gestión de memoria,Modos de direccionamiento,opcional
+42,6,2,2,Análisis de arquitecturas de microprocesadores,Gestión de memoria,Manejo de la pila,relevante
+43,6,3,1,Análisis de arquitecturas de microprocesadores,Optimización de ejecución,Pipeline,opcional
+44,6,3,2,Análisis de arquitecturas de microprocesadores,Optimización de ejecución,Threads,opcional
+45,7,1,1,Tópicos complementarios,Tópicos avanzados,Sistemas en tiempo real,opcional
+46,7,1,2,Tópicos complementarios,Tópicos avanzados,Manejo de errores,relevante
+47,7,1,3,Tópicos complementarios,Tópicos avanzados,Optimización de código,relevante
+48,7,2,1,Tópicos complementarios,Herramientas,Introducción a python,opcional
+49,7,2,2,Tópicos complementarios,Herramientas,Micropython: Máquina virtual de python para ESP32,fundamental
+50,7,2,3,Tópicos complementarios,Herramientas,"Read, Evaluate, Print, and Loop (REPL)",relevante
+51,7,2,4,Tópicos complementarios,Herramientas,"Instalación de herramientas: Thonny, drivers, micropython",opcional
+52,7,2,5,Tópicos complementarios,Herramientas,Gestión de versiones git,opcional
