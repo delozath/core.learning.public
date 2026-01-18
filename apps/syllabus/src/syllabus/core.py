@@ -2,7 +2,7 @@
 from syllabus.ports.tasks import (
     GlobalGradesPort,
     PartialGradesPort,
-    SyllabusPort
+    SyllabusOrchestratorPort
 )
 
 
@@ -20,7 +20,7 @@ class CoreSyllabus:
     
     def run(self):
         instance = self._caller()(self.cfg)
-        if isinstance(instance, SyllabusPort):
+        if isinstance(instance, SyllabusOrchestratorPort):
             instance.build()
         elif isinstance(instance, (GlobalGradesPort, PartialGradesPort)):
             instance.compute()

@@ -50,8 +50,8 @@ calendario:
           - 2026.04.06
 
 data:
-  full: # temario, calificaciones, estudiantes, ponderaciones
-    db: ${oc.env:BD_PATH}
+  sqlite: # temario, calificaciones, estudiantes, ponderaciones
+    source: ${oc.env:DB_PATH}/cursos.db
     tables:
       unidades: uam_symp_temario_unidades
       temas: uam_symp_temario_temas
@@ -59,8 +59,13 @@ data:
       estudiantes: uam_curso_current_students
       eval_items: uam_curso_current_items
       eval_items_eval: uam_curso_current_items_eval
+    
+  csv: # temario
+    source: ${oc.env:DB_PATH}/ejemplo.csv
+    tables: pass
 
 queries:
+  #TODO: Automatizar render de sqlite
   temario: "SELECT
         unidades.unidad as num_unidad,
         temas.tema as num_tema,
@@ -69,9 +74,9 @@ queries:
         temas.descripcion as tema_titulo,
         subtemas.descripcion,
         subtemas.cobertura
-    FROM ${..data.full.tables.unidades} AS unidades
-    JOIN ${..data.full.tables.temas}    AS temas ON unidades.unidad = temas.unidad
-    JOIN ${..data.full.tables.subtemas} AS subtemas
+    FROM ${..data.sqlite.tables.unidades} AS unidades
+    JOIN ${..data.sqlite.tables.temas}    AS temas ON unidades.unidad = temas.unidad
+    JOIN ${..data.sqlite.tables.subtemas} AS subtemas
         ON temas.unidad = subtemas.unidad
         AND temas.tema = subtemas.tema"
 

@@ -1,8 +1,5 @@
-
-import re
 from typing import Self
 
-from sympy import bernoulli
 
 from omegaconf import DictConfig
 
@@ -60,8 +57,6 @@ class Calendario:
         trim['tipo_sesion'] = None
         self.trim = self._sesiones(trim, sesiones)
         return self
-
-
     
     def _sesiones(self, trim: pd.DataFrame, sesiones: DictConfig) -> pd.DataFrame:
         """
@@ -122,7 +117,7 @@ class Calendario:
                 tmp = trim.loc[mask].reset_index().copy()
                 tmp['index'] = tmp['index'].astype(str)
                 eventos[info.name] = tmp[['index', 'semana_uam']].to_dict(orient='records')
-        
+
         return eventos
 
     def _traduce(self, fechas: pd.Series, dictionary: dict[dict, str]) -> pd.DataFrame:

@@ -1,28 +1,40 @@
-from omegaconf import DictConfig
-
 import os
 from pathlib import Path
+from typing import Self
 from dotenv import load_dotenv
+from pyparsing import C
 load_dotenv()
+
+
 import pandas as pd
-
-
-from syllabus.ports.tasks import SyllabusPort
-from syllabus.data.loader import LoaderResolver
-from syllabus.tasks.uam.trimestre import Calendario
-from syllabus.tasks.uam.jinja_driver import JinjaUAMDriverEnv
-
+from omegaconf import DictConfig
 from pylatex import Document, Package, Section, Subsection, Tabular, Command
 from pylatex.utils import NoEscape
 
 
-class SyllabusUAMTask(SyllabusPort):
+from syllabus.ports.dbs import DatabasePort
+from syllabus.ports.tasks import SyllabusOrchestratorPort, SyllabusPublisherPort
+
+from syllabus.data.loader import LoaderResolver
+from syllabus.tasks.uam.trimestre import Calendario
+from syllabus.tasks.uam.jinja_driver import JinjaUAMSyllabus
+
+
+class SyllabusUAMTask(SyllabusOrchestratorPort):
     def __init__(self, cfg: DictConfig) -> None:
         super().__init__(cfg)
     
     def build(self):
-        mock = f"Syllabus de la UAM para el curso {self.cfg.curso.information.name} ({self.cfg.curso.information.clave})"
-        DB_NAME = self.cfg.curso.data.full.db
+        """
+        Se consulta la base de datos para obtener el temario y se genera el syllabus en formato LaTeX
+        para la clase configurada en el archivo YAML correspondiente, de acuerdo a la llama del script
+        
+        ejemplo:
+            >> python -m syllabus.main institution=uam curso=symp task=syllabus +db_type='csv'
+            >> python -m syllabus.main institution=uam curso=symp task=syllabus +db_type='sqlite'
+        """
+        DB_TYPE = self.cfg.db_type
+        DB_NAME = self.cfg.curso.data[DB_TYPE].source
         DB_TEMARIO = self.cfg.curso.queries.temario
 
         TRIM_INIT = self.cfg.curso.calendario.inicio
@@ -30,11 +42,14 @@ class SyllabusUAMTask(SyllabusPort):
         TRIM_OFFSET = self.cfg.curso.calendario.uam_offset
         TRIM_SESSIONS = self.cfg.curso.calendario
 
+        CURSO_SHORT = self.cfg.curso.information.short_name
+        CURSO_TRIM = self.cfg.curso.information.trimestre
+
         TRANSLATE = self.cfg.constantes.traduccion
 
-        database = self._connect_db(DB_NAME)
+        database = self._connect_db(DB_NAME, driver=DB_TYPE)
         temario = database.query(DB_TEMARIO)
-        topicos = self.get_topicos(temario)
+        topicos = self.topicos_asdict(temario)
 
         calendar = Calendario()
         calendar.trimestre(
@@ -45,30 +60,32 @@ class SyllabusUAMTask(SyllabusPort):
             TRANSLATE
         )
         eventos = calendar.check_eventos(TRIM_SESSIONS.eventos)
-
-        latex = SyllabusLatexUAMGenerator(
+        
+        latex = SyllabusLatexUAM(
             self.cfg,
             topicos,
             eventos
         )
-        render = latex.compose()
+
         path = (
             Path(os.getenv("TEX_FILES_PATH"))
-            / f"Syllabus-{self.cfg.curso.information.short_name}-{self.cfg.curso.information.trimestre}.tex"
+            / f"Syllabus-{CURSO_SHORT}-{CURSO_TRIM}.tex"
         )
-        path.write_text(render, encoding="utf-8")
-        breakpoint()
-    
-    def _connect_db(self, db: str):
+        latex.compose()
+        latex.publish(path)
+
+        database.disconnect()
+
+    def _connect_db(self, db: str, driver: str = 'sqlite') -> DatabasePort:
         database = (
             LoaderResolver().resolve(
                 db,
-                'sqlite'
+                driver
              )
          )
         return database
     
-    def get_topicos(self, temario: pd.DataFrame) -> dict:
+    def topicos_asdict(self, temario: pd.DataFrame) -> dict:
         topicos = {}
         for (num_unidad, num_tema), grupo in temario.groupby(['num_unidad', 'num_tema']):
             unidad_titulo = grupo['unidad_titulo'].iloc[0]
@@ -83,10 +100,12 @@ class SyllabusUAMTask(SyllabusPort):
         
         return topicos
 
-class SyllabusLatexUAMGenerator:
+
+class SyllabusLatexUAM(SyllabusPublisherPort):
     def __init__(self, cfg, topicos, eventos) -> None:
         self.cfg = cfg
         self.curso = cfg.curso.information
+
         self.doc = Document(
             documentclass="article",
             document_options=["11pt", "letterpaper", "spanish"],
@@ -96,12 +115,12 @@ class SyllabusLatexUAMGenerator:
             textcomp=False,
             font_size=""
         )
-        jinja = JinjaUAMDriverEnv(self.cfg)
+        jinja = JinjaUAMSyllabus(self.cfg)
         self.temario = jinja.render_temario(topicos)
         self.sesiones = jinja.render_sesiones(self.cfg.curso.calendario.sesiones)
         self.eventos = jinja.render_eventos(eventos)
     
-    def compose(self) -> str:
+    def compose(self) -> str | None | Self:
         self._preamble()
         self._presentacion()
         self._generalidades()
@@ -109,8 +128,15 @@ class SyllabusLatexUAMGenerator:
         self._temario()
         self._nota()
         self._referencias()
-        latex = self.doc.dumps()
-        return latex
+        self.syllabus = self.doc.dumps()
+        return self
+    
+    def publish(self, path: Path) -> None:
+        if hasattr(self, 'syllabus') is False:
+            raise ValueError("El syllabus no ha sido renderizado. Llamar al método `compose()` antes.")
+
+        path.write_text(self.syllabus, encoding="utf-8")
+        print(f"Syllabus UAM guardado en: {path}")
     
     def _preamble(self) -> None:
         self.doc.packages.append(NoEscape(r"\usepackage{../../../lib/latex/uea_planeacion}"))
@@ -162,7 +188,6 @@ rf"""
         self.doc.append(Section("Sesiones"))
         self.doc.append(NoEscape(self.sesiones))
         self.doc.append(NoEscape(self.eventos))
-
 
     def _temario(self) -> None:
         self.doc.append(Section("Temario"))

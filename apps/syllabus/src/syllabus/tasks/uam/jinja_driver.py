@@ -1,35 +1,20 @@
-from jinja2 import Environment, FileSystemLoader, Template
-
-import pandas as pd
 from omegaconf import DictConfig
 
+from syllabus.utils import JinjaDriverEnv
 
-class JinjaUAMDriverEnv():
+
+class JinjaUAMSyllabus(JinjaDriverEnv):
     def __init__(self, cfg: DictConfig) -> None:
-        self.cfg = cfg
-        self.env = Environment(
-            loader=FileSystemLoader(
-                f"{self.cfg.constantes.path.root}/syllabus/tasks/uam/templates/"
-            )
-        )
+        super().__init__(cfg, "uam")
 
-    def render_temario(self, topicos: pd.DataFrame) -> str:
-        template = self.env.get_template("uami_temario.tex.j2")
-        render = template.render(
-            temario=topicos
-        )
+    def render_temario(self, topicos: dict) -> str:
+        render = self.render("uami_temario.tex.j2", temario=topicos)
         return render
     
     def render_eventos(self, eventos: list) -> str:
-        template = self.env.get_template("uami_eventos.tex.j2")
-        render = template.render(
-            eventos=eventos
-        )
+        render = self.render("uami_eventos.tex.j2", eventos=eventos)
         return render
-    
+
     def render_sesiones(self, sesiones: dict) -> str:
-        template = self.env.get_template("uami_sesiones.tex.j2")
-        render = template.render(
-            sesiones=sesiones
-        )
+        render = self.render("uami_sesiones.tex.j2", sesiones=sesiones)
         return render

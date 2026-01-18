@@ -5,5 +5,6 @@
 *.gif
 *.log
 *.pyc
+*.csv
 __pycache__/
 syllabus.egg-info/
