@@ -2,10 +2,10 @@
 
 MicroPython es una implementación ligera del lenguaje de programación Python, es decir, es una versión más pequeña y optimizada para ser implementada en microcontroladores de recursos limitados. En este folder, aprenderemos a los elementos básicos de un programa MicroPython pensados para la placa de desarrollo ESP32, haciendo parpadear un LED conectado a uno de sus pines *General Purpose Input/Output* (GPIO).
 
------
-
 
 ## Requisitos Previos
+<details>
+
 Antes de comenzar, asegúrate de tener lo siguiente:
 - Una placa de desarrollo ESP32.
 - Firmware de MicroPython instalado en tu ESP32. Puedes descargar la última versión desde [MicroPython Downloads](https://micropython.org/download/ESP32_GENERIC/).
@@ -16,14 +16,21 @@ Antes de comenzar, asegúrate de tener lo siguiente:
 
 Las siguientes secciones asumirán que ya tienes todo lo anterior listo y funcionando.
 
------
+</details>
+
 
 
 ## Estructura del Programa Blink en MicroPython
 
+<details>
+
 ### Implementación con enfoque de programación estructurada no optimizado
+
+**Blink Básico**
+
 [🔗 link al archivo completo](./blink_prog_estruct.py)
 El programa para hacer parpadear un LED en MicroPython consiste en:
+
 
 1. **Importar Módulos**: 
 `machine`: esta es núcleo de implementación de MicroPython que permite interactuar con el Hardware del ESP32. A través de esta biblioteca se puede acceder a los dispositivos periféricos como son GPIO, SPI, I2C, ADC, DAC, etc.
@@ -70,8 +77,61 @@ while True:
     print("Led apagado")
     time.sleep(0.5)
 ```
+</details>
 
-### REPL de MicroPython
+------
+
+## REPL: Interacción con el MicroPython
+
+<details>
+
 El REPL (Read-Eval-Print Loop) es un entorno interactivo que permite a los usuarios escribir y ejecutar código de MicroPython línea por línea. Los IDE de desarrollo como Thonny, tienen una implementación integrada donde se puede acceder al REPL de MicroPython.
 
 Es importante destacar que el REPL es una ventana de comando tipo CLI (Command Line Interface) la cual permite ejecutar comandos en el interprete de MicroPython y observar los resultados en dicha ventada de comandos. En otras palabras, desde la ventana del REPL se envían los comandos al interprete de MicroPython que se encuentra corriendo en el ESP32, mismo que ejecuta los comandos y devuelve los resultados que son mostrados en la ventana del REPL. Todo el envío y recepción se realiza a través de la conexión serial USB entre la computadora y bridge USB-Serial del ESP32.
+
+</details>
+
+## Optimización del Blink
+
+### Blink Optimizado con un solo sleep
+
+Esta optimización utiliza la función XOR para generar el cambio de encendido a apagado, y viceversa
+
+a XOR 1 = not a
+
+x = 0b0000_0001
+
+x = x XOR 1
+
+x = 
+
+```text
+0b0000_0001
+0b0000_0001
+-----------
+0b0000_0000
+```
+
+x = 
+
+```text
+0b0000_0000
+0b0000_0001
+-----------
+0b0000_0001
+```
+
+
+[🔗 link al archivo completo](./blink_prog_estruct_xor.py)
+El programa para hacer parpadear un LED en MicroPython consiste en:
+
+Blink optimizado con operación binaria XOR
+
+```python
+x = 1
+
+while True:
+    x ^= 1
+    led.value(x)
+    time.sleep(0.5)
+```
